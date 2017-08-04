@@ -3,7 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.spring.beteran.">
+<mapper namespace="com.spring.beteran.user">
+	<select id="list" resultType="user">
+		SELECT USERID, USERNAME, PWD, GENDER, BIRTH, EMAIL, ADDRESS
+		FROM USER_BTR
+	</select>
 
 </mapper>  
 

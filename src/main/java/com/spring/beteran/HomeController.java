@@ -28,7 +28,7 @@ public class HomeController {
 		System.out.println("Ctrl Test list");
 		ArrayList<UserVO> list = service.list();
 		model.addAttribute("lists",list);
-		return "home";
+		return "home" ;
 	}
 	
 }

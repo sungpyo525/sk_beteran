@@ -1,2 +1,3 @@
-target
-target/*
+sk_beteran/target/
+sk_beteran/target/**
+/pom.properties

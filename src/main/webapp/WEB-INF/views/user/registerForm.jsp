@@ -29,17 +29,43 @@
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
-
-<form action="/user/login.bt" method="post">
+        
+        
+        
+<!-- USERID	USERNAME	PWD	GENDER	BIRTH	EMAIL	ADDRESS -->
+<form action="/user/register.bt" method="post">
   <div class="form-group has-feedback">
-    <input type="text" name="userid" class="form-control" placeholder="USER ID"/>
-    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+    <input type="text" name="userid" class="form-control" placeholder="User Id"/>
+    <span class="glyphicon glyphicon-user form-control-feedback"></span>
   </div>
   <div class="form-group has-feedback">
     <input type="password" name="pwd" class="form-control" placeholder="Password"/>
     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
   </div>
-  
+  <div class="form-group has-feedback">
+    <input type="password" name="pwd2" class="form-control" placeholder="Again Password"/>
+    <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+  </div>
+  <div class="form-group has-feedback">
+    <input type="text" name="username" class="form-control" placeholder="User Name"/>
+    <span class="glyphicon glyphicon-pencil form-control-feedback"></span>
+  </div>
+  <div class="form-group has-feedback">
+    <input type="text" name="gender" class="form-control" placeholder="Gender"/>
+    <span class="glyphicon glyphicon-heart form-control-feedback"></span>
+  </div>
+  <div class="form-group has-feedback">
+    <input type="text" name="birth" class="form-control" placeholder="Birth"/>
+    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+  </div>
+  <div class="form-group has-feedback">
+    <input type="text" name="email" class="form-control" placeholder="Email"/>
+    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+  </div>
+  <div class="form-group has-feedback">
+    <input type="text" name="address" class="form-control" placeholder="Address"/>
+    <span class="glyphicon glyphicon-globe form-control-feedback"></span>
+  </div>
   <div class="row">
     <div class="col-xs-8">    
       <div class="checkbox icheck">
@@ -56,7 +82,7 @@
 
 
         <a href="#">I forgot my password</a><br>
-        <a href="/user/registerForm.bt" class="text-center">Register a new membership</a>
+        <a href="/user/register.bt" class="text-center">Register a new membership</a>
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

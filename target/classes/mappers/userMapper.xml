@@ -14,6 +14,11 @@
 		FROM USER_BTR
 		WHERE USERID=#{userid} and PWD=#{pwd}
 	</select>
+	
+	<insert id="register" parameterType="user">
+		INSERT INTO USER_BTR
+		VALUES (#{userid}, #{username}, #{pwd}, #{gender}, #{birth}, #{email}, #{address})	
+	</insert>
 
 
 </mapper>  

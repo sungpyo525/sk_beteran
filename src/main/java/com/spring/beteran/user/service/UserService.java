@@ -24,5 +24,10 @@ public class UserService {
 		System.out.println("Service BTR login");
 		return dao.loginRow(user);
 	}
+
+	public int register(UserVO user) {
+		System.out.println("Service User Register");
+		return dao.registerUser(user);
+	}
 	
 }

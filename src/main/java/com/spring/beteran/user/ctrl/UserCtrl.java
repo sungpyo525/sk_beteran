@@ -35,4 +35,17 @@ public class UserCtrl {
 		System.out.println("Ctrl LoginForm");
 		return "/user/login";
 	}
+	
+	@RequestMapping("/registerForm.bt")
+	public String registerForm() {
+		System.out.println("Go to Form");
+		return "/user/registerForm";
+	}
+	
+	@RequestMapping("/register.bt")
+	public String register(UserVO user) {
+		System.out.println("Ctrl User Register");
+		int result= service.register(user);
+		return "redirect:/main.bt";
+	}
 }

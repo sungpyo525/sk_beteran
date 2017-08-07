@@ -26,4 +26,9 @@ public class UserDao {
 		return session.selectOne("com.spring.beteran.user.login", user);
 	}
 
+	public int registerUser(UserVO user) {
+		System.out.println("Dao BTR Register user");
+		return session.insert("com.spring.beteran.user.register", user);
+	}
+
 }

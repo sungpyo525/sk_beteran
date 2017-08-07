@@ -333,6 +333,7 @@
 			    </div> 
 			    <div class="form-group">     
 			        <button type="submit"> 로그인</button>    
+			        <button type="button" id="register">회원가입</button>    
 			    </div>    
 			           
 		      </form>
@@ -545,6 +546,8 @@
         
         
         <script type="text/javascript">
+        
+        
 		function isSession(){
 			if('${loginUser}'==''){
 				//alert("not login"); 
@@ -554,4 +557,11 @@
 				location.href="/board/list.bt"
 			}
 		}
+		
+		$(document).ready(function(){
+			
+			$("#register").click(function(){
+				location.href="/user/registerForm.bt";
+			});
+		});
 		</script>

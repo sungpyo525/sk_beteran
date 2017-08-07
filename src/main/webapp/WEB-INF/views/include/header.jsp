@@ -252,11 +252,11 @@
               
               <c:if test="${loginUser!=null }">
               <li>
-                <a href="/user/logout.do">
-               		<i class="fa fa-sign-out" aria-hidden="true"></i>
+                <a href="/user/logout.bt">
+               		${loginUser.username} 님&nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i>
                	</a>
               </li>
-              </c:if>
+              </c:if> 
               
               
               <!-- User Account: style can be found in dropdown.less -->
@@ -321,10 +321,10 @@
 	        <h4 class="modal-title" id="myModalLabel">로그인 </h4>
 	      </div>
 	      <div class="modal-body">
-		      <form role="form"  action="/user/login.do" method="post">  
+		      <form role="form"  action="/user/login.bt" method="post">  
 			    <div class="form-group">   
 			        <label for="id">아이디</label>
-			        <input type="text" class="form-control" placeholder="아이디" name="id"> 
+			        <input type="text" class="form-control" placeholder="아이디" name="userid"> 
 			    </div>       
 			    <div class="form-group">  
 			
@@ -390,7 +390,7 @@
                 --%>
                 <li>
                 	<a href="javascript:isSession()">
-                		<i class="fa fa-circle-o"></i>게시판
+                		<i class="fa fa-circle-o"></i>재호:게시판
                 	</a>
                 </li>
                 
@@ -405,7 +405,7 @@
                 <span class="label label-primary pull-right">4</span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
+                <li><a href="/movie/movieRate.bt"><i class="fa fa-circle-o"></i> 상준 : movieRate</a></li>
                 <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
                 <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
                 <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
@@ -548,10 +548,10 @@
 		function isSession(){
 			if('${loginUser}'==''){
 				//alert("not login"); 
-				location.href="user/loginPost.do"
+				location.href="/user/loginPost.bt"
 			}else{
 				alert("login");
-				location.href="/board/list.do"
+				location.href="/board/list.bt"
 			}
 		}
 		</script>

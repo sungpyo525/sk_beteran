@@ -21,4 +21,9 @@ public class UserDao {
 		return (ArrayList)session.selectList("com.spring.beteran.user.list");
 	}
 
+	public UserVO loginRow(UserVO user) {
+		System.out.println("Dao BTR loginRow");
+		return session.selectOne("com.spring.beteran.user.login", user);
+	}
+
 }

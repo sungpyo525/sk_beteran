@@ -8,6 +8,13 @@
 		SELECT USERID, USERNAME, PWD, GENDER, BIRTH, EMAIL, ADDRESS
 		FROM USER_BTR
 	</select>
+	
+	<select id="login" parameterType="user" resultType="user">
+		SELECT USERID, USERNAME, PWD, GENDER, BIRTH, EMAIL, ADDRESS
+		FROM USER_BTR
+		WHERE USERID=#{userid} and PWD=#{pwd}
+	</select>
+
 
 </mapper>  
 

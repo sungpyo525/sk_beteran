@@ -1,20 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<html>
-<head>
-	<title>Home</title>
-</head>
-<body>
-<h1>
-	Hello world!  
-</h1>
+<%@include file="./include/header.jsp"%>
 
-<P>  The time on the server is ${serverTime}. </P>
-
+<!-- Main content -->
+<section class="content">
 <div class="row">
+
 		<!-- left column -->
 		<div class="col-md-12">
 			<!-- general form elements -->
@@ -57,10 +51,15 @@
 				</div>
 				<!-- /.box-body -->
 			</div>
+			<!-- /.box -->
 		</div>
 		<!--/.col (left) -->
 
 	</div>
+	<!-- /.row -->
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
 
-</body>
-</html>
+<%@include file="./include/footer.jsp"%>

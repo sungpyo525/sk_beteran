@@ -105,7 +105,7 @@
 					<div class="form-group">
 						<label for="Name" class="col-xs-2 col-lg-2 control-label">포스터</label>
 						<div class="col-xs-10 col-lg-10" id="poster">
-							<img alt="제공되는 사진이 없습니다.미안" id="post_img" src="" width="400" height="500" >
+							<img alt="제공되는 사진이 없습니다.미안" id="post_img"  width="400" height="500" >
 						</div>
 					</div>
 					<div class="form-group">

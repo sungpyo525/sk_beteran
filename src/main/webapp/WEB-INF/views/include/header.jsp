@@ -367,16 +367,21 @@
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
-          <!-- search form -->
-          <form action="#" method="get" class="sidebar-form">
+          
+          
+          <!-- search form찬호 -->
+		  <!-- footer에 javascript:isSessionMovieList()만들어서 연결해야함 -->
+          <form action="/movie/search.bt" method="post" class="sidebar-form">
             <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search..."/>
+              <input type="text" name="movieName" class="form-control" placeholder="Search..." />
               <span class="input-group-btn">
                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
             </div>
           </form>
           <!-- /.search form -->
+          
+          
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>

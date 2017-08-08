@@ -390,7 +390,7 @@
                 <li><a href="/board/listCri"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
                 --%>
                 <li>
-                	<a href="javascript:isSession()">
+                	<a href="/board/list.bt">
                 		<i class="fa fa-circle-o"></i>재호:게시판
                 	</a>
                 </li>
@@ -547,7 +547,7 @@
         
         <script type="text/javascript">
         
-        
+       	// 현재 호출안돼서 적용안되고 있음.
 		function isSession(){
 			if('${loginUser}'==''){
 				//alert("not login"); 

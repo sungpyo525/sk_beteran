@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.beteran.user.model.vo.UserVO;
@@ -15,12 +16,13 @@ public class UserCtrl {
 	@Resource(name="userService")
 	private UserService service;
 	
+	// Interceptor 적용함.
 	@RequestMapping("/login.bt")
-	public String login(UserVO user, HttpSession session) {
+	public void login(UserVO user, Model model) {
 		System.out.println("Ctrl BTR Login");
 		UserVO result = service.login(user);
-		session.setAttribute("loginUser", result);
-		return "redirect:/main.bt";
+		model.addAttribute("loginUser", result);
+		//return "redirect:/main.bt";
 	}
 	
 	@RequestMapping("/logout.bt")

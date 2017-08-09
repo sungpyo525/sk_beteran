@@ -50,4 +50,10 @@ public class UserCtrl {
 		int result= service.register(user);
 		return "redirect:/main.bt";
 	}
+	
+	@RequestMapping("/userInfo.bt")
+	public String userInfo(UserVO user){
+		System.out.println("Ctrl userInfo");
+		return "/user/userInfo";
+	}
 }

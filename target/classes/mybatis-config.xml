@@ -5,9 +5,9 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.spring.beteran.user.model.vo.UserVO" alias="user"/>
-		<typeAlias type="com.spring.beteran.boardreview.model.vo.BoardVO" alias="board"/>
+<!-- 		<typeAlias type="com.spring.beteran.boardreview.model.vo.BoardVO" alias="board"/>
       	<typeAlias type="com.spring.beteran.boardreview.util.vo.SearchVO" alias="search"/>
-      	<typeAlias type="com.spring.beteran.movie.model.vo.MovieVO" alias="movie" />
+      	<typeAlias type="com.spring.beteran.movie.model.vo.MovieVO" alias="movie" /> -->
 	</typeAliases>
 
 </configuration>

@@ -362,9 +362,18 @@
               <img src="/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
-              <p>Alexander Pierce</p>
-
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            
+              <c:if test="${loginUser == null }">
+              	<p><a href="/user/loginPost.bt">Please Sign In</a></p>
+	            <a href="#"><i class="fa fa-circle text-muted"></i> Offline</a>
+              </c:if>
+              
+              <c:if test="${loginUser!=null }">
+             	 <p>${loginUser.username } 님
+             	 <a href="/user/userInfo.bt"><i class="fa fa-gears"></i></a></p>
+	              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+              </c:if> 
+              
             </div>
           </div>
           

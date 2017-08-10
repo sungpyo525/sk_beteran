@@ -90,6 +90,20 @@
 							</c:forEach>
 						</tr>
 					</tbody>
+					<tbody id= "tbody2">
+						<tr>
+							<td><img alt='영화 포스터' src="${rank1.items[0].image}" ></td>
+							<td><img alt='영화 포스터' src="${rank2.items[0].image}" ></td>
+							<td><img alt='영화 포스터' src="${rank3.items[0].image}" ></td>
+							<td><img alt='영화 포스터' src="${rank4.items[0].image}" ></td>
+							<td><img alt='영화 포스터' src="${rank5.items[0].image}" ></td>
+							<td><img alt='영화 포스터' src="${rank6.items[0].image}" ></td>
+							<td><img alt='영화 포스터' src="${rank7.items[0].image}" ></td>
+							<td><img alt='영화 포스터' src="${rank8.items[0].image}" ></td>
+							<td><img alt='영화 포스터' src="${rank9.items[0].image}" ></td>
+							<td><img alt='영화 포스터' src="${rank10.items[0].image}" ></td>
+						</tr>
+					</tbody>
 				</table>
 			</div>
 			<!-- /.box -->
@@ -103,5 +117,12 @@
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+ <!--메인 페이지 영화 포스터 띄우기  -->
+ <script type='text/javascript' event='onload' for='window'>
+ 	function contentMovieModal(movieNm){
+ 		
+ 	}
+ </script>
 
 <%@include file="./include/footer.jsp"%>

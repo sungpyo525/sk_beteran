@@ -1,10 +1,11 @@
 package com.spring.beteran;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Locale;
 
 import javax.annotation.Resource;
@@ -16,14 +17,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.spring.beteran.movie.ctrl.NaverApi;
 import com.spring.beteran.user.model.vo.UserVO;
 import com.spring.beteran.user.service.UserService;
 
 import kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService;
 import kr.or.kobis.kobisopenapi.consumer.rest.exception.OpenAPIFault;
-import kr.or.kobis.kobisopenapi.consumer.soap.movie.MovieAPIServiceImplService;
-import kr.or.kobis.kobisopenapi.consumer.soap.movie.MovieInfoResult;
 
 @Controller
 public class HomeController {
@@ -77,13 +79,48 @@ public class HomeController {
 		HashMap<String,Object> dailyResult = mapper.readValue(dailyResponse, HashMap.class);
 	    
 		model.addAttribute("dailyResult", dailyResult);
-
+		
+		//System.out.println("박스오피스 boxOfficeResult의 value : ");
+		//System.out.println(dailyResult.get("boxOfficeResult"));
+		
+		HashMap<String,Object> boxOfficeString = (HashMap<String, Object>) dailyResult.get("boxOfficeResult");
+		System.out.println("리스트 결과 : ");
+				
+		ArrayList<HashMap<String, String>> chanho = (ArrayList<HashMap<String, String>>) boxOfficeString.get("dailyBoxOfficeList");
+		Iterator<HashMap<String, String>> iter = chanho.iterator();
+		
+		while(iter.hasNext()) {
+			
+			HashMap<String, String> oneOfList = iter.next();
+			HashMap<String,Object> rankJson = getPicture(oneOfList.get("movieNm"));
+			model.addAttribute("rank"+oneOfList.get("rank"), rankJson);
+			System.out.println("순위 : " +oneOfList.get("rank"));
+			System.out.println("영화json : " +rankJson);
+		}
+		System.out.println();
+		
 		//movieCd로 영화 받아오기
 		/*String movieCd = "123";
 		MovieInfoResult movieInfoResult = new MovieAPIServiceImplService().getMovieAPIServiceImplPort().searchMovieInfo(key, movieCd);
 		model.addAttribute("movieInfoResult",movieInfoResult);	
 		*/
 		return "home" ;
+	}
+	
+	public HashMap<String,Object> getPicture(String movieName) throws JsonParseException, JsonMappingException, IOException{
+		NaverApi naver = new NaverApi();
+		
+		System.out.println(movieName);
+		
+		String naverJson = naver.getNaverMovieJson(movieName);
+		ObjectMapper mapper = new ObjectMapper();
+		HashMap<String,Object> result = new HashMap<>();
+		
+		result = mapper.readValue(naverJson, HashMap.class);
+		//System.out.println(result);
+		
+		return result;
+	
 	}
 	
 }

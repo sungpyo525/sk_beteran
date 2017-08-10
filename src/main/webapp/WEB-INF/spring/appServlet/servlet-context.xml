@@ -37,6 +37,11 @@
 			<mapping path="/board/list.bt"/>
 			<beans:ref bean="author"/>
 		</interceptor>	
+		
+		<interceptor>
+			<mapping path="/rate/rateInsert.bt"/>
+			<beans:ref bean="author"/>
+		</interceptor>
 	</interceptors>
 	
 	

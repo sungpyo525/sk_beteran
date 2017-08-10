@@ -57,6 +57,48 @@
 
 	</div>
 	<!-- /.row -->
+	
+	<div class="row">
+		<!-- left column -->
+		<div class="col-md-12">
+			<!-- general form elements -->
+
+			<div class="box">
+				<div class="box-header with-border">
+					<h3 class="box-title">BOX OFFICE</h3>
+				</div>
+				<table class="table table-bordered">
+						<tr>
+							<th>1위</th>
+							<th>2위</th>
+							<th>3위</th>
+							<th>4위</th>
+							<th>5위</th>
+							<th>6위</th>
+							<th>7위</th>
+							<th>8위</th>
+							<th>9위</th>
+							<th>10위</th>
+							
+						</tr>
+					<tbody id= "tbody2">
+
+						<tr>
+							<c:forEach items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
+								<td><a href='javascript:contentMovieModal("${boxoffice.movieNm}")'>${boxoffice.movieNm }</td>
+								
+							</c:forEach>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- /.box -->
+		</div>
+		
+		
+		<!--/.col (left) -->
+	</div>
+	
 </section>
 <!-- /.content -->
 </div>

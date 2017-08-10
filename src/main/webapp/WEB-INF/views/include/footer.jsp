@@ -176,6 +176,130 @@
     </div><!-- ./wrapper -->
 
 
+	<!--영화 상세정보 및 평점 입력 Modal -->
+	<div class="modal fade" id="contentmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<input type="text" class="form-control" id="movieNm" name="movieNm">
+			</div>
+			<div class="modal-body">
+
+					<input type="hidden" neme="writer" id="writer"/>
+					
+					<div class="form-group">
+						<label for="Name" class="col-xs-2 col-lg-2 control-label">포스터</label>
+						<div class="col-xs-10 col-lg-10" id="poster">
+							<img alt="제공되는 사진이 없습니다.미안" id="post_img"  width="400" height="500" >
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="Name" class="col-xs-2 col-lg-2 control-label">개봉년도</label>
+						<div class="col-xs-10 col-lg-10">
+							<input class="form-control" id="openDt" name="openDt" readonly="readonly">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="Name" class="col-xs-2 col-lg-2 control-label">국가</label>
+						<div class="col-xs-10 col-lg-10">
+							<input class="form-control" id="repNationNm" name="repNationNm" readonly="readonly">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="Name" class="col-xs-2 col-lg-2 control-label">감독</label>
+						<div class="col-xs-10 col-lg-10" id="directors">
+							<input  name="directors" readonly="readonly">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="Name" class="col-xs-2 col-lg-2 control-label">배우</label>
+						<div class="col-xs-10 col-lg-10" id="actors">
+							<input  name="actors" readonly="readonly">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<form action="/rate/rateInsert.bt">
+							<label for="Name" class="col-xs-2 col-lg-2 control-label">고객님</label>
+							<div class="col-xs-10 col-lg-10"><input value="${loginUser.userid}" name="userid"></div>
+							<div class="col-xs-10 col-lg-10"><input id="hiddenMovieName" name="movieid" type="hidden"></div>
+							<label for="Name" class="col-xs-2 col-lg-2 control-label">평점 입력</label>
+							<div class="col-xs-10 col-lg-10" >
+								
+								<select id="rate" name="movierate">
+									<option>선택하세요</option>
+									<option>0.0</option>
+									<option>0.5</option>
+									<option>1.0</option>
+									<option>1.5</option>
+									<option>2.0</option>
+									<option>2.5</option>	
+									<option>3.0</option>
+									<option>3.5</option>
+									<option>4.0</option>
+									<option>4.5</option>
+									<option>5.0</option>
+								</select>
+								<button type="submit" >저장</button>
+							</div>
+
+						</form>
+					</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				<button type="button" class="btn btn-primary">변경 사항 저장</button>
+			</div>
+		</div> <!-- 모달 콘텐츠 -->
+	  </div> <!-- 모달 다이얼로그 -->
+	</div> <!-- 모달 전체 윈도우 -->
+	
+
+	
+	<script type="text/javascript">
+	
+	function contentMovieModal(movieNm,movieNmEn,openDt,repNationNm,directors,repGenreNm){
+		var image;
+		var director;
+		var image2;
+		var actor;
+		$.ajax({
+			url		: "/movie/getPicture.bt",
+			type	: "post",
+			data	: {movieName : movieNm},
+			dataType : "json",
+			success : function(ary){
+					image = ary.items[0].image;
+					actor = ary.items[0].actor;
+					//image2 = "http://t1.search.daumcdn.net/thumb/R438x0.q85/?fname=http%3A%2F%2Fcfile117.uf.daum.net%2Fimage%2F231AB84F51AD703D2F09BC"
+					director = ary.items[0].director;
+					
+					$("#poster").empty();
+					$("#poster").append("<img alt='영화 포스터' src="+image+" width='200' height='300'>");
+					$("#directors").empty();
+					$("#directors").append("<input value='"+director+"' readonly='readonly'>");
+					$("#actors").empty();
+					$("#actors").append("<input value='"+actor+"' readonly='readonly'>");
+			}
+		})
+	
+		
+		$('#contentmodal').modal();
+		
+		$('#movieNm').val(movieNm);
+		$('#movieNmEn').val(movieNmEn);
+		$('#openDt').val(openDt);
+		$('#repNationNm').val(repNationNm);
+		$('#hiddenMovieName').val(movieNm);	
+	}
+	
+
+	</script>
+
     <!-- Bootstrap 3.3.2 JS -->
     <script src="/resources/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <!-- FastClick -->

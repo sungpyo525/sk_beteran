@@ -20,6 +20,26 @@ import kr.or.kobis.kobisopenapi.consumer.rest.exception.OpenAPIFault;
 @RequestMapping("/movie")
 public class MovieCtrl {
 
+	@RequestMapping("/boxOffice.bt")
+	public String boxOffice(Model model) throws OpenAPIFault, Exception {
+		
+		// 발급키
+		String key = "95a0c5b77bf70ad87df5e6bbcc0331ab";
+
+		// KOBIS 오픈 API Rest Client를 통해 호출
+		KobisOpenAPIRestService kobisService = new KobisOpenAPIRestService(key);
+		
+		// 일일 박스오피스 서비스 호출 (boolean isJson, String targetDt, String itemPerPage,String multiMovieYn, String repNationCd, String wideAreaCd)
+	    String dailyResponse = kobisService.getDailyBoxOffice(true,null,null,null,null,null);
+	    
+	    // Json 라이브러리를 통해 Handling
+		ObjectMapper mapper = new ObjectMapper();
+		HashMap<String,Object> dailyResult = mapper.readValue(dailyResponse, HashMap.class);
+	    
+		model.addAttribute("dailyResult", dailyResult);
+		return null;
+	}
+
 	@RequestMapping("/search.bt")
 	public String search(SearchMovieVO movie, Model model) {
 		

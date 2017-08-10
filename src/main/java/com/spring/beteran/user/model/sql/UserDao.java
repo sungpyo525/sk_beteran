@@ -31,4 +31,19 @@ public class UserDao {
 		return session.insert("com.spring.beteran.user.register", user);
 	}
 
+	public UserVO userInfoRow(UserVO user) {
+		System.out.println("Dao BTR userInfoRow ");
+		return session.selectOne("com.spring.beteran.user.userInfo", user);
+	}
+
+	public int userInfoModifyRow(UserVO user) {
+		System.out.println("Dao userInfoModify");
+		return session.update("com.spring.beteran.user.userInfoModify", user);
+	}
+
+	public int deleteUserRow(UserVO user) {
+		System.out.println("Dao deleteUserRow");
+		return session.delete("com.spring.beteran.user.deleteUser", user);
+	}
+
 }

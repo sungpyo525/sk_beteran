@@ -52,8 +52,26 @@ public class UserCtrl {
 	}
 	
 	@RequestMapping("/userInfo.bt")
-	public String userInfo(UserVO user){
+	public String userInfo(UserVO user, Model model){
 		System.out.println("Ctrl userInfo");
+		UserVO result = service.userInfo(user);
+		model.addAttribute("loginUser", result);
+		System.out.println("result "+ result.getBirth());
 		return "/user/userInfo";
+	}
+	
+	@RequestMapping("/userInfoModify.bt")
+	public String userInfoModify(UserVO user){
+		System.out.println("Ctrl User Info Modify");
+		int result = service.userInfoModify(user);
+		return "redirect:/user/userInfo.bt?userid="+user.getUserid();
+	}
+	
+	@RequestMapping("/deleteUser.bt")
+	public String deleteUser(UserVO user, Model model) {
+		System.out.println("Ctrl Delete User");
+		System.out.println("id : "+user.getUserid());
+		int result = service.deleteUser(user);
+		return "redirect:/user/logout.bt";
 	}
 }

@@ -20,6 +20,24 @@
 		VALUES (#{userid}, #{username}, #{pwd}, #{gender}, #{birth}, #{email}, #{address})	
 	</insert>
 
-
+	<select id="userInfo" parameterType="user" resultType="user">
+		SELECT USERID, USERNAME, PWD, GENDER, BIRTH, EMAIL, ADDRESS
+		FROM USER_BTR	
+		WHERE USERID=#{userid}
+	</select>
+	
+	<update id="userInfoModify" parameterType="user">
+		UPDATE USER_BTR
+		SET
+		USERNAME=#{username}, PWD=#{pwd}, BIRTH=#{birth},
+		EMAIL=#{email}, ADDRESS=#{address}
+		WHERE USERID=#{userid}
+	</update>
+	
+	<delete id="deleteUser" parameterType="user">
+		DELETE FROM USER_BTR
+		WHERE USERID=#{userid}	
+	</delete>
+	
 </mapper>  
 

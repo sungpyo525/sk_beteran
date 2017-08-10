@@ -359,7 +359,7 @@
           <!-- Sidebar user panel -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="/resources/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+              <img width="160px" height="160px" src="/resources/dist/img/userpng.png" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
             
@@ -370,7 +370,7 @@
               
               <c:if test="${loginUser!=null }">
              	 <p>${loginUser.username } 님
-             	 <a href="/user/userInfo.bt"><i class="fa fa-gears"></i></a></p>
+             	 <a href="/user/userInfo.bt?userid=${loginUser.userid}"><i class="fa fa-gears"></i></a></p>
 	              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
               </c:if> 
               

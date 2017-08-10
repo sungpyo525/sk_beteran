@@ -56,7 +56,6 @@ public class UserCtrl {
 		System.out.println("Ctrl userInfo");
 		UserVO result = service.userInfo(user);
 		model.addAttribute("loginUser", result);
-		System.out.println("result "+ result.getBirth());
 		return "/user/userInfo";
 	}
 	

@@ -39,8 +39,8 @@
 		</interceptor>	
 		
 		<interceptor>
-			<mapping path="/rate/rateInsert.bt"/>
-			<beans:ref bean="author"/>
+			<mapping path="/movieRate/movieRate.bt"/>
+			<beans:ref bean="author"/>	
 		</interceptor>
 	</interceptors>
 	

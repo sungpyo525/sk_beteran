@@ -25,9 +25,7 @@ import kr.or.kobis.kobisopenapi.consumer.rest.exception.OpenAPIFault;
 @Controller
 @RequestMapping("/movie")
 public class MovieCtrl {
-	
-	@Resource(name="movieService")
-	private MovieService service;
+
 
 	@RequestMapping("/boxOffice.bt")
 	public String boxOffice(Model model) throws OpenAPIFault, Exception {
@@ -143,18 +141,6 @@ public class MovieCtrl {
 		return result;
 	
 	}
-	
-	@RequestMapping("/movieRate.bt")
-	public String list(Model model) {
-		System.out.println("Ctrl Movielist");
-		ArrayList<MovieVO> list = service.list();
-		ArrayList<MovieRateVO> listRate = service.listRate();
-		model.addAttribute("movieRatelists", listRate);
-		model.addAttribute("movielists", list);
-		
-		return "movie/movielist";
-	}
-
 	
 	
 }

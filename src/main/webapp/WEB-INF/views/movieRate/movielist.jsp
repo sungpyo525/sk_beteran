@@ -117,11 +117,12 @@
 					
 							<tbody id="tbody">
 								<c:forEach items="${movieRatelists}" var="movieRateVO">
-										<tr>
+										<tr id="targetRate">
 											<td>${movieRateVO.movieid}</td>
 											<td>${movieRateVO.userid}</td>
 											<td>${movieRateVO.movierate}</td>
-								<!-- 		  <td><button type="button" id="rateBtn">점수등록</button></td> -->
+								          	<td><button id="updateRate" type="button">수정</button></td>
+								          	<td><a href="/movieRate/rateDelete.bt?userid=${loginUser.userid}&movieid=${movieRateVO.movieid}"><button id="deleteRate" type="button">삭제</button></a></td>
 										</tr>
 								</c:forEach>
 
@@ -166,23 +167,28 @@
 							<th>MOVIEID</th>
 							<th>USERID</th>
 							<th>MOVIERATE</th>
+							<!-- <th>삭제</th> -->
 						</tr>
 					
 					
-							<tbody id="tbody">
+							<tbody id="tbody2">
 								<c:forEach items="${movieRatelists}" var="movieRateVO">
-										<tr>
-											<td>${movieRateVO.movieid}</td>
-											<td>${movieRateVO.userid}</td>
-											<td>${movieRateVO.movierate}</td>
-								<!-- 		  <td><button type="button" id="rateBtn">점수등록</button></td> -->
-										</tr>
+											<tr>
+												<td>${movieRateVO.movieid}</td>
+												<td>${movieRateVO.userid}</td>
+												<td>${movieRateVO.movierate}</td>
+												
+											</tr>
 								</c:forEach>
-
-
-					</tbody>
+							</tbody>
 
 					</table>
+					<div class="form-group" id="btnDiv">
+							<button id="updateBtn">수정</button>
+							<button id="deleteBtn">삭제</button>
+							<button id="listBtn">목록</button>
+						
+						</div>
 
 					<!-- 내용 들어가는 곳 -->
 
@@ -205,22 +211,17 @@
 
 	<script>
 	
-	 function rateModal(movieid, userid, movierate){
-		alert(movieid);
-		alert(userid);
-		alert(movierate);
-		$("#rateModal").modal();
-	} 
+
 	
 	
 	$(document).ready(function(){
-		$("#rateBtn").click(function(){
-			alert("감사합니다!");
-		});
 		
-		/* $("#myRateBtn").click(function(){
-			alert("^^");
-		}); */
+ 		$("#updateRate").on("click",function(){
+ 			alert("${loginUser.userid}");
+ 			
+ 		});
+		
+
 	});
 	
 	

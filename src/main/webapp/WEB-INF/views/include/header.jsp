@@ -420,7 +420,7 @@
                 <span class="label label-primary pull-right">4</span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="/movie/movieRate.bt"><i class="fa fa-circle-o"></i> 상준 : movieRate</a></li>
+                <li><a href="/movieRate/movieRate.bt?userid=${loginUser.userid}"><i class="fa fa-circle-o"></i> 상준 : movieRate</a></li>
                 <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
                 <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
                 <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>

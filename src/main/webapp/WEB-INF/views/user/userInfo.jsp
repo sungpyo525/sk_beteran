@@ -120,6 +120,7 @@ $(document).ready(function(){
 		$("#btnBox").empty();
 		$("#btnBox").append("<button type='submit' class='btn btn-primary'>Submit</button>");
 	});
+
 	
 	$("#removeBtn").on("click", function(){
 		if (confirm('정말 탈퇴하시겠습니까 ?')) {
@@ -128,8 +129,8 @@ $(document).ready(function(){
 		   	location.href="/user/userInfo.bt?userid=${loginUser.userid}";
 		}
 	});
-	
 
+	
 });
 </script>
 

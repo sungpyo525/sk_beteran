@@ -30,7 +30,7 @@ import kr.or.kobis.kobisopenapi.consumer.soap.movie.MovieAPIServiceImplService;
 import kr.or.kobis.kobisopenapi.consumer.soap.movie.MovieInfoResult;
 
 @Controller
-public class HomeController {
+public class HomeController  {
 	
 	public String getToday() {
 		

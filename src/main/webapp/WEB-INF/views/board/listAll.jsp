@@ -14,17 +14,18 @@
 
 			<div class="box">
 				<div class="box-header with-border">
-					<h3 class="box-title">SEARCH</h3>
+					<h3 class="box-title">네티즌 리뷰</h3>
 				</div>
 				
 				<div class="box-body">
 					<select id="searchType">
 						<option>제목</option>					
-						<option>작성자</option>					
+						<option>작성자</option>	
+						<option>관련영화</option>				
 					</select>
 					<input type="text" id="searchKeyword">
-					<button id="searchBtn">Search</button>
-					<button id="newBtn">Register</button>
+					<button id="searchBtn">검색</button>
+					<button id="newBtn">등록</button>
 				</div>
 				
 				<!-- /.box-body -->
@@ -41,31 +42,34 @@
 
 			<div class="box">
 				<div class="box-header with-border">
-					<h3 class="box-title">LIST ALL PAGE</h3>
+					<h3 class="box-title">전체 리스트</h3>
 				</div>
 				<div class="box-body">
 				
 					<table class="table table-bordered">
 						<tr>
-							<th style="width: 10px">SEQ</th>
-							<th>TITLE</th>
-							<th>WRITER</th>
-							<th>REGDATE</th>
-							<th style="width: 40px">VIEWCNT</th>
+							<th style="width: 60px">번호</th>
+							<th>제목</th>
+							
+							<th>글쓴이</th>
+							<th>날짜</th>
+							
+							
+							<!-- <th style="width: 40px">VIEWCNT</th> -->
 						</tr>
 					
 					<tbody id= "tbody">
-					<c:forEach items="${lists}" var="boardVO">
+					<c:forEach items="${lists}" var="boardreviewVO">
 					
 						<tr>
-							<td>${boardVO.seq}</td>
+							<td>${boardreviewVO.rvid}</td>
 							<!--/는 루트를 기준으로, ./는 현재를 기준으로 -->
 							<!--<td><a href='/board/read.do?seq=${boardVO.seq}'>${boardVO.title}</a></td> -->
 							
-							<td><a href="javascript:contentModal(${boardVO.seq},'${boardVO.title}','${boardVO.content}', '${boardVO.writer}')">${boardVO.title}</a></td>
-							<td>${boardVO.writer}</td>
-							<td>${boardVO.regdate}</td>
-							<td><span class="badge bg-red">${boardVO.viewcnt }</span></td>
+							<td><a href="javascript:contentModal(${boardreviewVO.rvid},'${boardreviewVO.rvtitle}','${boardreviewVO.rvcontent}', '${boardreviewVO.userid}')">${boardreviewVO.rvtitle}</a></td>
+							<td>${boardreviewVO.userid}</td>
+							<td>${boardreviewVO.rvregdate}</td>
+						<%-- 	<td><span class="badge bg-red">${boardreviewVO.viewcnt }</span></td> --%>
 						</tr>
 					
 					</c:forEach>
@@ -96,25 +100,25 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	        <h4 class="modal-title" id="myModalLabel">글 상세보기</h4>
+	        <h4 class="modal-title" id="myModalLabel">리뷰 상세보기</h4>
 	      </div>
 	      <div class="modal-body">
 	      
-	      		<input type="hidden" name="writer" id="writer">
+	      		<input type="hidden" name="userid" id="userid">
 	      		
 	      		<div class="form-group">  
 	     			<label for="title">제목</label>
-	      			<input type="text" class="form-control" id="title" name="title">
+	      			<input type="text" class="form-control" id="rvtitle" name="rvtitle">
 	      		</div>
 	      		<div class="form-group">  
 				   	<label for="content">내용</label>
-				    <textarea class="form-control" id="content" name="content">
+				    <textarea class="form-control" id="rvcontent" name="rvcontent">
 				    </textarea>
 	      		</div>  
 	      		<div class="form-group" id=btnDiv> 
-	      			<button id="updateBtn" type="button" class="btn btn-primary">UPDATE</button>
-	        		<button id="deleteBtn" type="button" class="btn btn-primary">DELETE</button>
-	        		<button id="listBtn" type="button" class="btn btn-warning">LIST</button> 
+	      			<button id="updateBtn" type="button" class="btn btn-primary">수정</button>
+	        		<button id="deleteBtn" type="button" class="btn btn-primary">삭제</button>
+	        		<button id="listBtn" type="button" class="btn btn-warning">목록</button> 
 	      		</div>
 	      </div>
 	      <div class="modal-footer">
@@ -127,64 +131,63 @@
 	
 	
 
+	
+	
+	
+	
 	<script>
-		var seq;
-		function contentModal(seq, title, content, writer){
-			this.seq=seq;
+		var rvid;
+		function contentModal(rvid, rvtitle, rvcontent, userid){
+			this.rvid=rvid;
 			//alert(seq+":"+title+":"+content+":"+writer);
-			$("#contentModal").modal('show');
+			$("#contentModal").modal();
 			
-			$("#title").val(title);
-			$("#content").empty().append(content);		
-			$("#writer").val(writer);
+			$("#rvtitle").val(rvtitle);
+			$("#rvcontent").val(rvcontent);		
+			$("#userid").val(userid);
 			
-			//alert('${loginUser.id}'+" : "+$("#writer").val());
 			
-			/* if('${loginUser.id}' == $("#writer").val()){
-				$("#btnDiv").empty();
-				$("#btnDiv").append("<button id='updateBtn' type='button' class='btn btn-primary'>UPDATE</button>")
-						.append("<button id='deleteBtn' type='button' class='btn btn-primary'>DELETE</button>")
-						.append("<button id='listBtn' type='button' class='btn btn-warning'>LIST</button> ");
-			}
-			else{
-				$("#btnDiv").empty();
-				$("#btnDiv").append("<button id='listBtn' type='button' class='btn btn-warning'>LIST</button>");
-			} */
 			
-			$("#updateBtn").show();
-			$("#deleteBtn").show();
-			if('${loginUser.id}' != $("#writer").val()){
+			
+			if('${loginUser.userid}' != $("#userid").val()){
 				$("#updateBtn").hide();
 				$("#deleteBtn").hide();
+			}else{
+				$("#updateBtn").show();
+				$("#deleteBtn").show();
 			}
 		}
+		
 	
 		$(document).ready(function(){
 			
 			$("#deleteBtn").click(function(){
-				alert(seq);
-				location.href="/board/delete.do?seq="+seq;
+				alert(rvid);
+				location.href="/board/delete.bt?rvid="+rvid;
 			});
 			
 			$("#updateBtn").click(function(){
-				alert(seq);
-				location.href="/board/modifyForm.do?seq="+seq;
+				alert(rvid);
+				location.href="/board/modifyForm.bt?rvid="+rvid;
 			});
 			
 			$("#newBtn").click(function(){
-				location.href="/board/boardForm.do";
+				location.href="/board/boardForm.bt";
 			});
 			
 			$("#listBtn").click(function(){
-				location.href="/board/list.do";
+				location.href="/board/list.bt";
 			});
 			
+			
+			
+		
 			
 			$("#searchBtn").click(function(){
 				var type= 	$("#searchType").val();
 				var keyword= $("#searchKeyword").val();
 				$.ajax({
-					url : "search.do",
+					url : "search.bt",
 					type : "post",
 					data : {searchType:type, searchKeyword:keyword},
 					dataType : "json",
@@ -193,12 +196,13 @@
 						$("#tbody").empty();
 						var str="";
 						$.each(ary, function(idx, obj){
+							
 							str += "<tr>";
-							str += "<td>"+obj.seq+"</td>";
-							str += "<td><a href=''>"+obj.title+"</a></td>";
-							str += "<td>"+obj.writer+"</td>";
-							str += "<td>"+obj.regdate+"</td>";
-							str += "<td><span class='badge bg-red'>"+obj.viewcnt +"</span></td>";
+							str += "<td>"+obj.rvid+"</td>";
+							str += "<td><a href=''>"+obj.rvtitle+"</a></td>";
+							str += "<td>"+obj.userid+"</td>";
+							str += "<td>"+obj.rvregdate+"</td>";
+							/* str += "<td><span class='badge bg-red'>"+obj.viewcnt +"</span></td>"; */
 							str += "</tr>";
 						});
 						$("#tbody").append(str);

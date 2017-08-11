@@ -5,10 +5,12 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.spring.beteran.user.model.vo.UserVO" alias="user"/>
-<!-- 		<typeAlias type="com.spring.beteran.boardreview.model.vo.BoardVO" alias="board"/>
-      	<typeAlias type="com.spring.beteran.boardreview.util.vo.SearchVO" alias="search"/>-->
-      	<typeAlias alias="movie" type="com.spring.beteran.movie.model.vo.MovieVO"/>
-		<typeAlias alias="movieRate" type="com.spring.beteran.movierate.model.vo.MovieRateVO"/>
+      	
+      	<typeAlias type="com.spring.beteran.movie.model.vo.MovieVO" alias="movie"/>
+		<typeAlias type="com.spring.beteran.movierate.model.vo.MovieRateVO" alias="movieRate" />
+		
+		<typeAlias type="com.spring.beteran.boardreview.model.vo.BoardreviewVO" alias="boardReview"/>
+        <typeAlias type="com.spring.beteran.boardreview.util.vo.BoardreviewSearchVO" alias="search"/>
 	</typeAliases>
 
 </configuration>

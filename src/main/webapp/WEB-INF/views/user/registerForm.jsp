@@ -35,8 +35,12 @@
 <!-- USERID	USERNAME	PWD	GENDER	BIRTH	EMAIL	ADDRESS -->
 <form action="/user/register.bt" method="post">
   <div class="form-group has-feedback">
-    <input type="text" name="userid" class="form-control" placeholder="User Id"/>
+    <input type="text" name="userid" class="form-control" id="userid" placeholder="User Id"/>
     <span class="glyphicon glyphicon-user form-control-feedback"></span>
+  </div>
+  <div class="form-group has-feedback">
+    <button onclick="idCheck()" type="button" class="btn btn-warning" value="중복체크">중복체크</button>
+    <span id="idCheck"></span>
   </div>
   <div class="form-group has-feedback">
     <input type="password" name="pwd" class="form-control" placeholder="Password"/>
@@ -88,14 +92,33 @@
     <script src="/resources/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <!-- iCheck -->
     <script src="/resources/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
-    <script>
-      $(function () {
-        $('input').iCheck({
-          checkboxClass: 'icheckbox_square-blue',
-          radioClass: 'iradio_square-blue',
-          increaseArea: '20%' // optional
-        });
-      });
+    <script  type="text/javascript">
+    var isOverlapped = true;
+    function idCheck() {
+    	var id= $("#userid").val();
+	    if(id==""){
+	    	 $("#idCheck").empty().append("<span><b>&nbsp;&nbsp;&nbsp;&nbsp;아이디를 입력해주세요.</b></span>");
+	    }else{	
+		    $.ajax({
+		    	 url: "/user/userIdCheck.bt",
+		    	 type: "post",
+		    	 data : {userid : id},
+		    	 datatype: "json",
+		    	 success : function(isExist){
+		    		 if(isExist==1){
+		    			 $("#idCheck").empty().append("<span style='color:red'><b>&nbsp;&nbsp;&nbsp;&nbsp;사용할 수 없습니다.</b></span>");
+		    			 return false
+		    		 }else{
+		    			 $("#idCheck").empty().append("<span style='color:green'><b>&nbsp;&nbsp;&nbsp;&nbsp;사용해도 좋습니다.</b></span>");
+		    			 return false;
+		    		 }
+		    		 
+		    	 }
+		    });
+	    }
+    }
+    
+     
     </script>
   </body>
 </html>

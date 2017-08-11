@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.beteran.board">
+
+	<select id="list" resultType="boardReview">
+
+		SELECT RVID, RVTITLE, RVCONTENT,
+		USERID, RVREGDATE
+		FROM BOARDREVIEW
+	</select>
+
+
+	<select id="search" parameterType="search" resultType="boardReview">
+
+		SELECT RVID, RVTITLE, RVCONTENT, USERID, RVREGDATE
+		FROM BOARDREVIEW
+
+		<!-- 다이나믹 쿼리 사용가능 -->
+
+
+		<where>
+			<if test="searchType == '제목' ">
+				RVTITLE LIKE '%'||#{searchKeyword}||'%'
+
+			</if>
+			<if test="searchType == '작성자' ">
+				USERID LIKE '%'||#{searchKeyword}||'%'
+
+			</if>
+
+
+
+		</where>
+	</select>
+
+
+	
+
+
+	
+
+	<insert id="register" parameterType="boardReview">
+		INSERT INTO BOARDREVIEW
+		VALUES (BOARDREVIEW_SEQ.NEXTVAL,
+		#{rvtitle},
+		#{rvcontent},
+		SYSDATE,
+		#{userid})
+	</insert>
+
+	<update id="modify" parameterType="boardReview">
+
+		UPDATE BOARDREVIEW SET
+		RVTITLE=#{rvtitle},
+		RVCONTENT=#{rvcontent},
+		USERID=#{userid}
+		WHERE RVID =
+		#{rvid}
+
+	</update>
+
+	<select id="modifyForm" parameterType="boardReview" resultType="boardReview">
+		SELECT RVID, RVTITLE, RVCONTENT, USERID, RVREGDATE
+		FROM BOARDREVIEW
+		WHERE RVID = #{rvid}
+
+	</select>
+
+
+	<delete id="delete" parameterType="boardReview">
+		DELETE FROM BOARDREVIEW
+		WHERE
+		RVID = #{rvid}
+	</delete>
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

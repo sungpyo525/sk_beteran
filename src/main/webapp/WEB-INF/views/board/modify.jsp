@@ -15,28 +15,28 @@
 				</div>
 				<!-- /.box-header -->
 
-<form role="form" method="post" action="/board/modify.do">
+<form role="form" method="post" action="/board/modify.bt">
 
 	<div class="box-body">
 
 		<div class="form-group">
 			<label for="exampleInputEmail1">SEQ</label> <input type="text"
-				name='seq' class="form-control" value="${boardVO.seq}"
+				name='rvid' class="form-control" value="${boardreviewVO.rvid}"
 				readonly="readonly">
 		</div>
 
 		<div class="form-group">
 			<label for="exampleInputEmail1">Title</label> <input type="text"
-				name='title' class="form-control" value="${boardVO.title}">
+				name='rvtitle' class="form-control" value="${boardreviewVO.rvtitle}">
 		</div>
 		<div class="form-group">
 			<label for="exampleInputPassword1">Content</label>
-			<textarea class="form-control" name="content" rows="3">${boardVO.content}</textarea>
+			<textarea class="form-control" name="rvcontent" rows="3">${boardreviewVO.rvcontent}</textarea>
 		</div>
 		<div class="form-group">
-			<label for="exampleInputEmail1">Writer</label> <input
-				type="text" name="writer" class="form-control" readonly="readonly"
-				value="${boardVO.writer}">
+			<label for="exampleInputEmail1">UserId</label> <input
+				type="text" name="userid" class="form-control" readonly="readonly"
+				value="${boardreviewVO.userid}">
 		</div>
 	</div>
 	<!-- /.box-body -->

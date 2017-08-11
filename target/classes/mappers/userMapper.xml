@@ -39,5 +39,11 @@
 		WHERE USERID=#{userid}	
 	</delete>
 	
+	<select id="isExist" parameterType="user" resultType="user">
+		SELECT USERID
+		FROM USER_BTR
+		WHERE USERID=#{userid}
+	</select>
+	
 </mapper>  
 

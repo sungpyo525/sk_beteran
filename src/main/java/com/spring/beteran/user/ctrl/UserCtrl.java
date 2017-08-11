@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.beteran.user.model.vo.UserVO;
 import com.spring.beteran.user.service.UserService;
@@ -72,5 +73,19 @@ public class UserCtrl {
 		System.out.println("id : "+user.getUserid());
 		int result = service.deleteUser(user);
 		return "redirect:/user/logout.bt";
+	}
+	
+	@RequestMapping("/userIdCheck.bt")
+	@ResponseBody
+	public int userIdCheck(UserVO user) {
+		int result;
+		System.out.println("Ctrl userIdCheck.bt");
+		UserVO isExist = service.userIdCheck(user);
+		if(isExist==null) {
+			result=0;
+		}else {
+			result=1;
+		}
+		return result;
 	}
 }

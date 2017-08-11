@@ -46,4 +46,9 @@ public class UserDao {
 		return session.delete("com.spring.beteran.user.deleteUser", user);
 	}
 
+	public UserVO userIdCheckRow(UserVO user) {
+		System.out.println("Dao userIdCheckRow");
+		return session.selectOne("com.spring.beteran.user.isExist", user);
+	}
+
 }

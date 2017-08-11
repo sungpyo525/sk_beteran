@@ -44,5 +44,10 @@ public class UserService {
 		System.out.println("Service deleteUser");
 		return dao.deleteUserRow(user);
 	}
+
+	public UserVO userIdCheck(UserVO user) {
+		System.out.println("Service userIdCheck");
+		return dao.userIdCheckRow(user);
+	}
 	
 }

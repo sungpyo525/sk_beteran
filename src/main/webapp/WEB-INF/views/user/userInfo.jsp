@@ -109,6 +109,22 @@
 
 
 <script>
+/* window.onload = function () {
+alert("로딩 완료");
+var userid= "${loginUser.userid}";
+alert(userid);
+$.ajax({
+	 url: "/movieRate/movieRateCheck.bt",
+	 type: "post",
+	 data : {userid : userid},
+	 datatype: "json",
+	 success : function(isExist){
+		 alert("검사하기")
+		 
+	 }
+})
+} */
+	
 $(document).ready(function(){
 	$("#modifyBtn").on("click", function(){
 		$("#username").attr("readonly", false);

@@ -103,7 +103,7 @@
 
 			<div class="box">
 				<div class="box-header with-border">
-					<h3 class="box-title">MOVIE RATES</h3>
+					<h3 class="box-title">내가 입력한 평점</h3>
 				</div>
 				<div class="box-body">
 				
@@ -121,7 +121,7 @@
 											<td>${movieRateVO.movieid}</td>
 											<td>${movieRateVO.userid}</td>
 											<td>${movieRateVO.movierate}</td>
-								          	<td><button id="updateRate" type="button">수정</button></td>
+								          	<td><a href="javascript:updateModal(${movieRateVO.movieid},'${movieRateVO.userid}',${movieRateVO.movierate})"><button id="updateRate" type="button">수정</button></a></td>
 								          	<td><a href="/movieRate/rateDelete.bt?userid=${loginUser.userid}&movieid=${movieRateVO.movieid}"><button id="deleteRate" type="button">삭제</button></a></td>
 										</tr>
 								</c:forEach>
@@ -130,9 +130,6 @@
 	</tbody>
 
 </table>
-	<button class="ratemovie" data-toggle="modal" data-target="#rateModal">
-	내가 준 평점
-	</button>
 				</div>
 				<!-- /.box-body -->
 				<div class="box-footer">Footer</div>
@@ -151,47 +148,49 @@
 <!-- /.content-wrapper -->
 
 <!-- 모달 -->
-	<div class="modal fade" id="rateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	 <div class="modal-dialog">
 	  <div class="modal-content">
 	   <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal">
 	     <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 		</button>
-			<h4 class="modal-title" id="myModalLabel">글 상세</h4>
+			<h4 class="modal-title" id="myModalLabel">평점</h4>
 	   </div>	
 		<div class="modal-body">
 			<!-- 태그 -->	
-					<table class="table table-bordered">
+			
+					<table class="table table-rate">
 						<tr>
 							<th>MOVIEID</th>
 							<th>USERID</th>
 							<th>MOVIERATE</th>
-							<!-- <th>삭제</th> -->
 						</tr>
-					
-					
-							<tbody id="tbody2">
-								<c:forEach items="${movieRatelists}" var="movieRateVO">
-											<tr>
-												<td>${movieRateVO.movieid}</td>
-												<td>${movieRateVO.userid}</td>
-												<td>${movieRateVO.movierate}</td>
-												
-											</tr>
-								</c:forEach>
+							<tbody id="tbody">
+							<form role="form" action="/movieRate/updateRate.bt" method="post">
+							
+								<td><input type="text" id="modalmovieid" name="movieid"/></td>
+								<td><input type="text" id="modaluserid" name="userid"/></td>
+								<td>
+								<select id="modalmovierate" name="movierate">
+									<option>select</option>
+									<option>0.5</option>
+									<option>1.0</option>
+									<option>1.5</option>
+									<option>2.0</option>
+									<option>2.5</option>
+									<option>3.0</option>
+									<option>3.5</option>
+									<option>4.0</option>
+									<option>4.5</option>
+									<option>5.0</option>
+								</select></td>
 							</tbody>
-
-					</table>
-					<div class="form-group" id="btnDiv">
-							<button id="updateBtn">수정</button>
-							<button id="deleteBtn">삭제</button>
-							<button id="listBtn">목록</button>
-						
-						</div>
+						</table>
+					<div><button id="updateBtn" type="submit">수정</button></div>
 
 					<!-- 내용 들어가는 곳 -->
-
+			</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
@@ -211,14 +210,19 @@
 
 	<script>
 	
+	
+	function updateModal(movieid, userid, movierate){
 
+		$("#updateModal").modal();
+		$("#modalmovieid").val(movieid);
+		$("#modaluserid").val(userid);
+	}
 	
 	
 	$(document).ready(function(){
 		
- 		$("#updateRate").on("click",function(){
- 			alert("${loginUser.userid}");
- 			
+ 		$("#updateBtn").click(function(){
+ 			alert("하하");
  		});
 		
 

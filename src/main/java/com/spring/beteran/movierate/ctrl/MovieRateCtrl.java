@@ -57,7 +57,7 @@ public class MovieRateCtrl {
 	public String updateRate(MovieRateVO movie) {
 		System.out.println("Ctrl updateRate");
 
-		//int result = service.getUpdate(movie);
+		int result = service.getUpdate(movie);
 		return "redirect:/movieRate/movieRate.bt?userid="+movie.getUserid();
 	}
 

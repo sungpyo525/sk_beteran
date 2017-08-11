@@ -31,6 +31,14 @@
                   USERID=#{userid}
       </delete>
       
+      <update id="updateRate"
+      		  parameterType="movieRate">
+      		UPDATE MOVIERATE
+      		SET	   MOVIERATE=#{movierate}		  
+      		WHERE  MOVIEID=#{movieid} AND
+      				USERID=#{userid}  
+      </update>
+      
 
    
       

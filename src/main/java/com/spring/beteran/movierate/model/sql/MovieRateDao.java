@@ -39,5 +39,12 @@ public class MovieRateDao {
 		System.out.println("Dao rateDeleteRow");
 		return session.delete("com.spring.beteran.movie.deleteRate", rate);
 	}
+	
+	public int updateRateRow(MovieRateVO movie) {
+		System.out.println("Dao updateRateRow");
+		System.out.println(movie.getMovieid());
+		System.out.println(movie.getUserid());
+		return session.update("com.spring.beteran.movierate.updateRate", movie);
+	}
 
 }

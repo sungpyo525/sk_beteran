@@ -37,7 +37,10 @@ public class MovieRateService {
 		return dao.deleteRateRow(rate);
 	}
 
-	
+	public int getUpdate(MovieRateVO movie) {
+		System.out.println("Service rateUpdate");
+		return dao.updateRateRow(movie);
+	}
 
 
 }

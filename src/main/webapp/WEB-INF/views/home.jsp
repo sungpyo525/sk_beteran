@@ -85,8 +85,8 @@
 
 						<tr>
 							<c:forEach items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
-								<td><a href='javascript:contentMovieModal("${boxoffice.movieNm}")'>${boxoffice.movieNm }</td>
-								
+								<td><a href='javascript:contentMovieModal("${boxoffice.movieNm}","${boxoffice.movieNmEn}","${boxoffice.openDt }",
+									"${boxoffice.repNationNm}","${boxoffice.directors}","${boxoffice.repGenreNm}")'>${boxoffice.movieNm }</td>
 							</c:forEach>
 						</tr>
 					</tbody>
@@ -108,7 +108,10 @@
 			</div>
 			<!-- /.box -->
 		</div>
-		
+		<div>
+			<%-- <input value="${rank1json.movieInfo.movieNm}"/> --%>
+			
+		</div>
 		
 		<!--/.col (left) -->
 	</div>

@@ -26,6 +26,8 @@ import com.spring.beteran.user.service.UserService;
 
 import kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService;
 import kr.or.kobis.kobisopenapi.consumer.rest.exception.OpenAPIFault;
+import kr.or.kobis.kobisopenapi.consumer.soap.movie.MovieAPIServiceImplService;
+import kr.or.kobis.kobisopenapi.consumer.soap.movie.MovieInfoResult;
 
 @Controller
 public class HomeController {
@@ -80,8 +82,8 @@ public class HomeController {
 	    
 		model.addAttribute("dailyResult", dailyResult);
 		
-		//System.out.println("박스오피스 boxOfficeResult의 value : ");
-		//System.out.println(dailyResult.get("boxOfficeResult"));
+		System.out.println("박스오피스 boxOfficeResult의 value : ");
+		System.out.println(dailyResult.get("boxOfficeResult"));
 		
 		HashMap<String,Object> boxOfficeString = (HashMap<String, Object>) dailyResult.get("boxOfficeResult");
 		System.out.println("리스트 결과 : ");
@@ -89,21 +91,33 @@ public class HomeController {
 		ArrayList<HashMap<String, String>> chanho = (ArrayList<HashMap<String, String>>) boxOfficeString.get("dailyBoxOfficeList");
 		Iterator<HashMap<String, String>> iter = chanho.iterator();
 		
+		//ArrayList<String> movieCdList = new ArrayList<>(); //박스오피스 영화 코드 리스트
 		while(iter.hasNext()) {
 			
 			HashMap<String, String> oneOfList = iter.next();
+			//movieCdList.add(oneOfList.get("movieCd"));
+
 			HashMap<String,Object> rankJson = getPicture(oneOfList.get("movieNm"));
 			model.addAttribute("rank"+oneOfList.get("rank"), rankJson);
-			System.out.println("순위 : " +oneOfList.get("rank"));
-			System.out.println("영화json : " +rankJson);
+			//System.out.println("순위 : " +oneOfList.get("rank"));
+			//System.out.println("영화json : " +rankJson);
 		}
+		/*
 		System.out.println();
-		
+		System.out.println(movieCdList);
 		//movieCd로 영화 받아오기
-		/*String movieCd = "123";
-		MovieInfoResult movieInfoResult = new MovieAPIServiceImplService().getMovieAPIServiceImplPort().searchMovieInfo(key, movieCd);
-		model.addAttribute("movieInfoResult",movieInfoResult);	
-		*/
+		Iterator<String> iterMovieCd = movieCdList.iterator();
+		int i=0;
+		while(iterMovieCd.hasNext()) {
+			String check = iterMovieCd.next();
+			System.out.println("체크크크크크크크크크 : "+check);
+			MovieInfoResult movieInfoResult = new MovieAPIServiceImplService().getMovieAPIServiceImplPort().searchMovieInfo(key, check);
+			
+			model.addAttribute("rank"+i+"json",movieInfoResult);
+			i++;
+		}*/
+			
+		
 		return "home" ;
 	}
 	
@@ -120,7 +134,6 @@ public class HomeController {
 		//System.out.println(result);
 		
 		return result;
-	
 	}
 	
 }

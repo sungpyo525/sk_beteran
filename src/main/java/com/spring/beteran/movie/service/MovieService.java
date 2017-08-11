@@ -26,4 +26,13 @@ public class MovieService {
 		return dao.movielistRateRow();
 	}
 
+	public MovieVO selectRow(MovieVO movie) {
+		System.out.println("MovieService : selectRow");
+		return dao.selectRow(movie);
+	}
+
+	public int insert(MovieVO movie) {
+		System.out.println("MovieService : insert");
+		return dao.insert(movie);
+	}
 }

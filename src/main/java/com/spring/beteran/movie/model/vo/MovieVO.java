@@ -1,11 +1,9 @@
 package com.spring.beteran.movie.model.vo;
 
 public class MovieVO {
+	private int	movieid;
+	private String	moviename, moviedirector, moviedate, movienation, moviesummary;
 	
-	int movieid;
-	String moviename, moviedirector, moviedate, movienation;
-	String moviesummary;
-	////////////
 	public MovieVO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -56,5 +54,6 @@ public class MovieVO {
 	public void setMoviesummary(String moviesummary) {
 		this.moviesummary = moviesummary;
 	}
+	
 	
 }

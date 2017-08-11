@@ -62,7 +62,6 @@
 									<td>${movie.movieNmEn }</td>
 									<td>${movie.openDt }</td>
 									<td>${movie.repGenreNm}</td>
-									<td>${movie.repNationNm}</td>
 									<td><c:forEach items="${movie.directors}" var="director">
 											${director.peopleNm} /
 										</c:forEach>

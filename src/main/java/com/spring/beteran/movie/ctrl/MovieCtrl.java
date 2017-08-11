@@ -1,10 +1,7 @@
 package com.spring.beteran.movie.ctrl;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-
-import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.spring.beteran.movie.model.vo.MovieVO;
 import com.spring.beteran.movie.model.vo.SearchMovieVO;
-import com.spring.beteran.movie.service.MovieService;
-import com.spring.beteran.movierate.model.vo.MovieRateVO;
 
 import kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService;
 import kr.or.kobis.kobisopenapi.consumer.rest.exception.OpenAPIFault;
@@ -25,7 +19,6 @@ import kr.or.kobis.kobisopenapi.consumer.rest.exception.OpenAPIFault;
 @Controller
 @RequestMapping("/movie")
 public class MovieCtrl {
-
 
 	@RequestMapping("/boxOffice.bt")
 	public String boxOffice(Model model) throws OpenAPIFault, Exception {
@@ -127,6 +120,7 @@ public class MovieCtrl {
 	@RequestMapping("/getPicture.bt")
 	@ResponseBody
 	public HashMap<String,Object> getPicture(String movieName) throws JsonParseException, JsonMappingException, IOException{
+		
 		NaverApi naver = new NaverApi();
 		
 		System.out.println(movieName);
@@ -141,6 +135,4 @@ public class MovieCtrl {
 		return result;
 	
 	}
-	
-	
 }

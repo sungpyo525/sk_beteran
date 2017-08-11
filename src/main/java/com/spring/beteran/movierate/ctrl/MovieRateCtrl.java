@@ -52,4 +52,13 @@ public class MovieRateCtrl {
 		return "redirect:/movieRate/movieRate.bt?userid="+rate.getUserid();
 	}
 
+	
+	@RequestMapping("/updateRate.bt")
+	public String updateRate(MovieRateVO movie) {
+		System.out.println("Ctrl updateRate");
+
+		//int result = service.getUpdate(movie);
+		return "redirect:/movieRate/movieRate.bt?userid="+movie.getUserid();
+	}
+
 }

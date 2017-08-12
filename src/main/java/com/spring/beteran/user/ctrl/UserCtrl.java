@@ -1,13 +1,17 @@
 package com.spring.beteran.user.ctrl;
 
+import java.util.ArrayList;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.beteran.movierate.model.vo.MovieRateVO;
 import com.spring.beteran.user.model.vo.UserVO;
 import com.spring.beteran.user.service.UserService;
 
@@ -84,6 +88,18 @@ public class UserCtrl {
 		if(isExist==null) {
 			result=0;
 		}else {
+			result=1;
+		}
+		return result;
+	}
+	
+	@RequestMapping("/isExstMovieRate.bt")
+	@ResponseBody
+	public int isExstMovieRate (UserVO user) {
+		int result=0;
+		System.out.println("Ctrl isExstMovieRate");
+		ArrayList<MovieRateVO> isExist= service.isExstMovieRate(user);
+		if(isExist.isEmpty()) {
 			result=1;
 		}
 		return result;

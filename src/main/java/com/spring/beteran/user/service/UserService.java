@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.spring.beteran.movierate.model.vo.MovieRateVO;
 import com.spring.beteran.user.model.sql.UserDao;
 import com.spring.beteran.user.model.vo.UserVO;
 
@@ -48,6 +49,11 @@ public class UserService {
 	public UserVO userIdCheck(UserVO user) {
 		System.out.println("Service userIdCheck");
 		return dao.userIdCheckRow(user);
+	}
+
+	public ArrayList<MovieRateVO> isExstMovieRate(UserVO user) {
+		System.out.println("Service isExstMovieRate");
+		return dao.isExstMovieRateRow(user);
 	}
 	
 }

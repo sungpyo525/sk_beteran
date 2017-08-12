@@ -46,7 +46,14 @@
                 <span class="icon-next"></span>
               </a>
           </div>
-
+	<br>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box" id="btnArea">
+			
+			</div>
+		</div>
+	</div>
 	<div class="row">
 
 		<!-- left column -->
@@ -167,5 +174,43 @@
  		
  	}
  </script>
+ 
+ 
+ <script  type="text/javascript">
+ 	window.onload = function () {
+ 		var userid= "${loginUser.userid}";
+	    if(userid==""){
+	    	 $("#btnArea").empty().append("<button type='button' onclick='gologinPost()' class='btn btn-warning' value='로그인 하기'>로그인 하기</button>");
+	    }else{	
+		    $.ajax({
+		    	 url: "/user/isExstMovieRate.bt",
+		    	 type: "post",
+		    	 data : {userid : userid},
+		    	 datatype: "json",
+		    	 success : function(isExist){
+		    		 alert(isExist);
+		    		 if(isExist==1){
+		    			 $("#btnArea").empty().append("<button type='button' onclick='gomovieRate()' class='btn btn-success' value='평가하기'>평가하기</button>");
+		    			 return false
+		    		 }else{
+		    			 $("#btnArea").empty().append("<button type='button' onclick='gomovieRate()' class='btn btn-primary' value='점수보기'>점수보기</button>");;
+		    			 return false;
+		    		 }
+		    		 
+		    	 }
+		    });
+	    }
+	}
+ 	
+ 	function gologinPost(){
+ 		location.href="/user/loginPost.bt";
+ 	}
+ 	
+ 	function gomovieRate(){
+ 		location.href="/movieRate/movieRate.bt?userid=${loginUser.userid}";
+ 	}
+ 	
+    </script>
+ 
 
 <%@include file="./include/footer.jsp"%>

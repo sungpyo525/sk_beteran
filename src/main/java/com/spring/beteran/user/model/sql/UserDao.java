@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.spring.beteran.movierate.model.vo.MovieRateVO;
 import com.spring.beteran.user.model.vo.UserVO;
 
 @Repository("userDao")
@@ -49,6 +50,11 @@ public class UserDao {
 	public UserVO userIdCheckRow(UserVO user) {
 		System.out.println("Dao userIdCheckRow");
 		return session.selectOne("com.spring.beteran.user.isExist", user);
+	}
+
+	public ArrayList<MovieRateVO> isExstMovieRateRow(UserVO user) {
+		System.out.println("Dao isExstMovieRateRow");
+		return (ArrayList)session.selectList("com.spring.beteran.user.isExstMovieRate", user);
 	}
 
 }

@@ -45,5 +45,13 @@
 		WHERE USERID=#{userid}
 	</select>
 	
+	
+	<select id="isExstMovieRate" parameterType="user" resultType="movieRate">
+		SELECT M.MOVIENAME,MOVIEID, USERID, MOVIERATE
+		FROM MOVIERATE R
+		JOIN MOVIE M USING (MOVIEID)
+		WHERE USERID=#{userid}
+	</select>
+	
 </mapper>  
 

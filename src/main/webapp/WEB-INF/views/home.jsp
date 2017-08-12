@@ -17,24 +17,24 @@
                  <!-- Carousel items -->
              <div class="carousel-inner">
                 <div class="item active">
-                   <img src="./slide1.jpg" alt="First slide">
+                   <a href="/movieRate/movieRate.bt?userid=${loginUser.userid}"><img src="/resources/img/carousel01.jpg" alt="First slide"></a>
                      <div class="carousel-caption">
-                        <h3>슬라이드 효과 </h3>
-                        <p>캡션 내부에는 HTML 태그 사용 가능합니다.</p>
+                        <h3>영화 추천 </h3>
+                        <p>데이터로 분석되는 다양한 추천 영화를 만나보세요!</p>
                      </div>  
                 </div>
                 <div class="item">
-                   <img src="./slide2.jpg" alt="Second slide"> 
+                   <a href="/board/list.bt"><img src="/resources/img/carousel02.jpg" alt="Second slide"></a> 
                      <div class="carousel-caption">
-                        <h3>슬라이드 효과 </h3>
-                        <p>캡션 내부에는 HTML 태그 사용 가능합니다.</p>
+                        <h3>영화 리뷰 </h3>
+                        <p>많은 유저들의 다양한 리뷰를 만나보세요!</p>
                      </div>                                   
                 </div>
                 <div class="item">
-                   <img src="./slide3.jpg" alt="Third slide">                 
+                    <a href="#"><img src="/resources/img/carousel03.jpg" alt="Third slide"></a>                 
                      <div class="carousel-caption">
-                        <h3>슬라이드 효과 </h3>
-                        <p>캡션 내부에는 HTML 태그 사용 가능합니다.</p>
+                        <h3>실시간 제공 </h3>
+                        <p>실시간으로 업데이트되는 인기영화 정보를 만나보세요! </p>
                      </div>                     
                 </div>
              </div>

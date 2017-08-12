@@ -9,11 +9,12 @@
          FROM   MOVIE
       </select>
       
-      <select id="movieRate" resultType="movieRate">
-         SELECT MOVIEID, USERID, MOVIERATE
-         FROM   MOVIERATE
-          WHERE  USERID =#{userid}
-      </select>
+      <select id="movieRate" parameterType="user" resultType="movieRate">
+		SELECT M.MOVIENAME,MOVIEID, USERID, MOVIERATE
+		FROM MOVIERATE R
+		JOIN MOVIE M USING (MOVIEID)
+		WHERE USERID=#{userid}
+	</select>
       
       <delete id="deleteRate"
             parameterType="movieRate">

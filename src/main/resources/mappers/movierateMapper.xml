@@ -18,11 +18,6 @@
                #{movierate})   
       </insert>
       
-      <select id="movieRate" resultType="movieRate">
-         SELECT MOVIEID, USERID, MOVIERATE
-         FROM   MOVIERATE
-          WHERE  USERID =#{userid}
-      </select>
       
       <delete id="deleteRate"
             parameterType="movieRate">

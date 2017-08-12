@@ -21,7 +21,7 @@
 						<option>제목</option>
 						<option>작성자</option>
 					</select>
-					<input type="date" id="searchKeyword">
+					<input type="text" id="searchKeyword">
 					<button id="searchBtn">Search</button>
 					<button id="newBtn">Register</button>
 				</div>
@@ -103,21 +103,25 @@
 
 			<div class="box">
 				<div class="box-header with-border">
-					<h3 class="box-title">내가 입력한 평점</h3>
+					<h3 class="box-title">내가 준 평점</h3>
 				</div>
 				<div class="box-body">
 				
 					<table class="table table-bordered">
 						<tr>
+							<th>MOVIETITLE</th>
 							<th>MOVIEID</th>
 							<th>USERID</th>
 							<th>MOVIERATE</th>
+
 						</tr>
 					
 					
 							<tbody id="tbody">
 								<c:forEach items="${movieRatelists}" var="movieRateVO">
 										<tr id="targetRate">
+											
+											<td>${movieRateVO.moviename}</td>
 											<td>${movieRateVO.movieid}</td>
 											<td>${movieRateVO.userid}</td>
 											<td>${movieRateVO.movierate}</td>
@@ -141,6 +145,25 @@
 	</div>
 	<!-- /.row -->
 	
+	<div class="row">
+		<div class="col-md-12">
+		 <div class="box">
+			 <div class="box-header with-border">
+				<h3 class="box-title">테스트</h3>
+			 </div>
+			 <div class="box-body">
+			 	
+
+<input name="star1" type="radio" class="star"/>
+<input name="star1" type="radio" class="star"/>
+<input name="star1" type="radio" class="star"/>
+<input name="star1" type="radio" class="star"/>
+<input name="star1" type="radio" class="star"/>
+			 </div>
+	     </div>
+	    </div>
+	</div>
+	
 	
 </section>
 <!-- /.content -->
@@ -155,7 +178,7 @@
 		<button type="button" class="close" data-dismiss="modal">
 	     <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 		</button>
-			<h4 class="modal-title" id="myModalLabel">평점</h4>
+			<h4 class="modal-title" id="myModalLabel">글 상세</h4>
 	   </div>	
 		<div class="modal-body">
 			<!-- 태그 -->	

@@ -332,8 +332,8 @@
 			        <input type="password" class="form-control" placeholder="패스워드" name="pwd"> 
 			    </div> 
 			    <div class="form-group">     
-			        <button type="submit"> 로그인</button>    
-			        <button type="button" id="register">회원가입</button>    
+			        <button type="submit" class="btn btn-default"> 로그인</button>    
+			        <button style = "margin-left: 5px;"type="button" id="register" class="btn btn-success">회원가입</button>    
 			    </div>    
 			           
 		      </form>

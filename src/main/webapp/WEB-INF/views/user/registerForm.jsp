@@ -59,7 +59,7 @@
     <span class="glyphicon glyphicon-heart form-control-feedback"></span>
   </div>
   <div class="form-group has-feedback">
-    <input type="text" name="birth" class="form-control" placeholder="Birth"/>
+    <input type="date" name="birth" class="form-control" placeholder="Birth"/>
     <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
   </div>
   <div class="form-group has-feedback">

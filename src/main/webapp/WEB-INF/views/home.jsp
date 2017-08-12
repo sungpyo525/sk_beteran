@@ -7,7 +7,47 @@
 
 <!-- Main content -->
 <section class="content">
-<div class="row">
+	 <div id="carousel-example-generic" class="carousel slide">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+                 <!-- Carousel items -->
+             <div class="carousel-inner">
+                <div class="item active">
+                   <img src="./slide1.jpg" alt="First slide">
+                     <div class="carousel-caption">
+                        <h3>슬라이드 효과 </h3>
+                        <p>캡션 내부에는 HTML 태그 사용 가능합니다.</p>
+                     </div>  
+                </div>
+                <div class="item">
+                   <img src="./slide2.jpg" alt="Second slide"> 
+                     <div class="carousel-caption">
+                        <h3>슬라이드 효과 </h3>
+                        <p>캡션 내부에는 HTML 태그 사용 가능합니다.</p>
+                     </div>                                   
+                </div>
+                <div class="item">
+                   <img src="./slide3.jpg" alt="Third slide">                 
+                     <div class="carousel-caption">
+                        <h3>슬라이드 효과 </h3>
+                        <p>캡션 내부에는 HTML 태그 사용 가능합니다.</p>
+                     </div>                     
+                </div>
+             </div>
+            <!-- Controls -->
+              <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                <span class="icon-prev"></span>
+              </a>
+              <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                <span class="icon-next"></span>
+              </a>
+          </div>
+
+	<div class="row">
 
 		<!-- left column -->
 		<div class="col-md-12">

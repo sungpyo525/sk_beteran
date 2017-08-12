@@ -21,7 +21,7 @@
 						<option>제목</option>
 						<option>작성자</option>
 					</select>
-					<input type="text" id="searchKeyword">
+					<input type="date" id="searchKeyword">
 					<button id="searchBtn">Search</button>
 					<button id="newBtn">Register</button>
 				</div>

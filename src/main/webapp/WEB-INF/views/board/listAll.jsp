@@ -152,6 +152,8 @@
 	
 	<script type="text/javascript">
 		
+	
+	/* Start :  좋아요 스크립트*/
 		var loginuserid="${loginUser.userid}";	// 리뷰 좋아요에 누를 사람의 userid
 		var rvid;
 		function contentModal(rvid, rvtitle, rvcontent, userid, movieid, moviename){
@@ -160,7 +162,6 @@
 			reviewCount(rvid);
 			showLikeBtn(loginuserid, rvid);
 			
-			//alert(seq+":"+title+":"+content+":"+writer);
 			$("#contentModal").modal();
 			
 			$("#moviename").val(moviename);
@@ -244,11 +245,11 @@
 				}		
 			});
 		}
+	/* End :  좋아요 스크립트*/
+		
+		
 		
 		$(document).ready(function(){
-			
-			
-			
 			
 			$("#deleteBtn").click(function(){
 				alert(rvid);

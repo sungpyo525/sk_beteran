@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.spring.beteran.movie.model.vo.MovieVO;
+import com.spring.beteran.movie.rate.model.vo.RateVO;
 import com.spring.beteran.movierate.model.vo.MovieRateVO;
 import com.spring.beteran.user.model.vo.UserVO;
 
@@ -45,6 +46,11 @@ public class MovieRateDao {
 		System.out.println(movie.getMovieid());
 		System.out.println(movie.getUserid());
 		return session.update("com.spring.beteran.movierate.updateRate", movie);
+	}
+
+	public int checkRate(MovieRateVO rate) {
+		System.out.println("Dao checkRate");
+		return session.selectOne("com.spring.beteran.movierate.checkRate", rate);
 	}
 
 }

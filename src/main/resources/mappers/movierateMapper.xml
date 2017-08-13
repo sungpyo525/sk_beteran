@@ -33,9 +33,13 @@
       		WHERE  MOVIEID=#{movieid} AND
       				USERID=#{userid}  
       </update>
-      
+    
+      <select id="checkRate" parameterType="movieRate" resultType="integer">
+      		SELECT	COUNT(*)
+      		FROM	MOVIERATE
+      		WHERE	MOVIEID=#{movieid} AND USERID=#{userid}
+      </select>
 
-   
       
       
 

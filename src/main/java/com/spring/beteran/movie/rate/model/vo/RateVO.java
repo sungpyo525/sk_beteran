@@ -1,23 +1,23 @@
 package com.spring.beteran.movie.rate.model.vo;
 
 public class RateVO {
-	private String movieid, userid; 
+	private int movieid;
+	private String userid; 
 	private double movierate;
-	
 	public RateVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public RateVO(String movieid, String userid, double movierate) {
+	public RateVO(int movieid, String userid, double movierate) {
 		super();
 		this.movieid = movieid;
 		this.userid = userid;
 		this.movierate = movierate;
 	}
-	public String getMovieid() {
+	public int getMovieid() {
 		return movieid;
 	}
-	public void setMovieid(String movieid) {
+	public void setMovieid(int movieid) {
 		this.movieid = movieid;
 	}
 	public String getUserid() {
@@ -32,7 +32,6 @@ public class RateVO {
 	public void setMovierate(double movierate) {
 		this.movierate = movierate;
 	}
-
 	
 	
 	

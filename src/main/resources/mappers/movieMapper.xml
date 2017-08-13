@@ -16,6 +16,11 @@
 		VALUES (MOVIESEQ.NEXTVAL, #{moviename}, #{moviedirector}, #{moviedate}, NULL, NULL)
 	</insert>
 	
+	<select id="getId" parameterType="movie" resultType="Integer">
+		SELECT	MOVIEID
+		FROM	MOVIE
+		WHERE	MOVIENAME = #{moviename} AND MOVIEDATE = #{moviedate}
+	</select>
 	
 
 </mapper>  

@@ -47,4 +47,9 @@ public class MovieDao {
 		
 		return result;
 	}
+
+	public int getMovieId(MovieVO movie) {
+		System.out.println("movieDao : getMovieId : "+ movie.getMoviename());
+		return session.selectOne("com.spring.beteran.movie.getId", movie);
+	}
 }

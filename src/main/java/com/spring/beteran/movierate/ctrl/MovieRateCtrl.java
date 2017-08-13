@@ -38,7 +38,26 @@ public class MovieRateCtrl {
 		movie.setUserid(user.getUserid());
 		movie.getMovieid();
 		
-		int flag = service.rateRegister(movie);
+		//int flag = service.rateRegister(movie); //그냥 바로 insert하는것 대신에
+
+		// check rate table : 이미 해당 영화의 평점 입력했는지 체크. -> 했으면 update, 안했으면 insert
+		System.out.println(
+				"입력할 rateVO의 값 : " + movie.getMovieid() + " / " + movie.getUserid() + " / " + movie.getMovierate());
+		int checkRate = service.checkRate(movie);
+		if (checkRate == 0) {// select count(*) from movierate where movieid and userid 를 사용 이미 입력했다면 1, 안했다면
+								// 0이 나온다.
+			// 0이 나왔으므로 그냥 insert한다.
+			int insertResult = service.rateRegister(movie);
+			if (insertResult == 1) {
+				System.out.println("입력 성공");
+			}
+		} else {
+			// 1이 나왔으므로 update한다.
+			int updateResult = service.getUpdate(movie);
+			if (updateResult == 1) {
+				System.out.println("업데이트 성공");
+			}
+		}
 		
 		return "redirect:/movieRate/movieRate.bt?userid="+movie.getUserid();
 	}

@@ -184,7 +184,10 @@
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 				</button>
-				<input type="text" class="form-control" id="movieNm" name="movieNm">
+				<div id="movieNm">
+					<h1 name="movieNm">영화 이름</h1>
+				</div>
+				
 			</div>
 			<div class="modal-body">
 
@@ -193,7 +196,7 @@
 					<div class="form-group">
 						<label for="Name" class="col-xs-2 col-lg-2 control-label">포스터</label>
 						<div class="col-xs-10 col-lg-10" id="poster">
-							<img alt="제공되는 사진이 없습니다.미안" id="post_img"  width="400" height="500" >
+							<img alt="제공되는 사진이 없습니다.미안" id="post_img"  width="200" height="300" >
 						</div>
 					</div>
 					
@@ -223,9 +226,8 @@
 						
 						<div class="form-group">
 							
-								<label for="Name" class="col-xs-2 col-lg-2 control-label">고객님</label>
-								<div class="col-xs-10 col-lg-10"><input value="${loginUser.userid}" name="userid"></div>
-								<div class="col-xs-10 col-lg-10"><input id="hiddenMovieName" name="moviename"></div>
+								<input type="hidden" value="${loginUser.userid}" name="userid">
+								<input type="hidden" id="hiddenMovieName" name="moviename">
 								<label for="Name" class="col-xs-2 col-lg-2 control-label">평점 입력</label>
 								<div class="col-xs-10 col-lg-10" >
 									
@@ -248,21 +250,23 @@
 						</div>
 					</form>
 			</div>
+			
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 			</div>
+			
 		</div> <!-- 모달 콘텐츠 -->
 	  </div> <!-- 모달 다이얼로그 -->
 	</div> <!-- 모달 전체 윈도우 -->
 	
-
+	
 	
 	<script type="text/javascript">
 	var image;
 	var director;
 	
 	var actor;
-	function contentMovieModal(movieNm,movieNmEn,openDt,repNationNm,directors,repGenreNm){
+	function contentMovieModal(movieNm,movieNmEn,openDt,repNationNm,directors,repGenreNm,prdtYear){
 
 		$.ajax({
 			url		: "/movie/getPicture.bt",
@@ -270,13 +274,38 @@
 			data	: {movieName : movieNm},
 			dataType : "json",
 			success : function(ary){
+					var i=0;
+					var image;
+					var actor;
+					var openYear;
+					var director;
+					
+					var patternDirector = new RegExp(directors);
+					var patternNmEn = new RegExp(movieNmEn);
+					
 					image = ary.items[0].image;
 					actor = ary.items[0].actor;
 					openYear = ary.items[0].pubDate;
 					director = ary.items[0].director;
 					
+					$.each(ary.items, function(ids, obj){
+						
+					
+						if(patternDirector.test(obj.director)){
+							image = obj.image;
+							actor = obj.actor;
+							openYear = obj.pubDate;
+							director = obj.director;
+							
+						}
+						
+						
+					});
+
+					
+					
 					$("#poster").empty();
-					$("#poster").append("<img alt='영화 포스터' src="+image+" width='200' height='300'>");
+					$("#poster").append("<img alt='영화 포스터' src="+image+" height='300'>");
 					$("#directors").empty();
 					$("#directors").append("<input value='"+director+"' name='moviedirector' readonly='readonly'>");
 					$("#actors").empty();
@@ -286,10 +315,14 @@
 			}
 		})
 	
+		$('#movieNm').empty();
+		$('#movieNm').append("<h1>"+movieNm+"</h1>");
+		
+		
 		
 		$('#contentmodal').modal();
 		$('#hiddenMovieName').val(movieNm);
-		$('#movieNm').val(movieNm);
+		
 		$('#movieNmEn').val(movieNmEn);
 		$('#openDt').val(openDt);
 		$('#openYear').val(openYear);

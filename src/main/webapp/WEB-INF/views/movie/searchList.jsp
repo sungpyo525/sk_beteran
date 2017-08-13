@@ -58,12 +58,12 @@
 
 								<tr>
 									<td><a href='javascript:contentMovieModal("${movie.movieNm}","${movie.movieNmEn}","${movie.openDt }",
-									"${movie.repNationNm}","${movie.directors}","${movie.repGenreNm}")'>${movie.movieNm }</td>
+									"${movie.repNationNm}","${movie.directors[0].peopleNm}","${movie.repGenreNm}","${movie.prdtYear}")'>${movie.movieNm }</td>
 									<td>${movie.movieNmEn }</td>
 									<td>${movie.openDt }</td>
 									<td>${movie.repGenreNm}</td>
 									<td><c:forEach items="${movie.directors}" var="director">
-											${director.peopleNm} /
+											${director.peopleNm}
 										</c:forEach>
 									</td>
 								</tr>
@@ -104,7 +104,7 @@
 		});
 		
 		
-		//비동기 영화 search modal
+		//비동기 영화 search modal 사용안함 걸리는 문제가 많음
 		$("#searchBtn2").click(function(){
 			var movieNm = $("#movieName").val();
 			var directorNm = $("#directorName").val();

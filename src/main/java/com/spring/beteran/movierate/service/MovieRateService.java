@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.spring.beteran.movie.model.vo.MovieVO;
+import com.spring.beteran.movie.rate.model.vo.RateVO;
 import com.spring.beteran.movierate.model.sql.MovieRateDao;
 import com.spring.beteran.movierate.model.vo.MovieRateVO;
 import com.spring.beteran.user.model.vo.UserVO;
@@ -40,6 +41,11 @@ public class MovieRateService {
 	public int getUpdate(MovieRateVO movie) {
 		System.out.println("Service rateUpdate");
 		return dao.updateRateRow(movie);
+	}
+
+	public int checkRate(MovieRateVO rate) {
+		System.out.println("Service checkRate");
+		return dao.checkRate(rate);
 	}
 
 

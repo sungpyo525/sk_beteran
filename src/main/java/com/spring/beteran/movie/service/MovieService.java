@@ -27,12 +27,17 @@ public class MovieService {
 	}
 
 	public MovieVO selectRow(MovieVO movie) {
-		System.out.println("MovieService : selectRow");
+		System.out.println("movieService : selectRow");
 		return dao.selectRow(movie);
 	}
 
 	public int insert(MovieVO movie) {
-		System.out.println("MovieService : insert");
+		System.out.println("movieService : insert");
 		return dao.insert(movie);
+	}
+
+	public int getMovieId(MovieVO movie) {
+		System.out.println("movieService : getMovieId");
+		return dao.getMovieId(movie);
 	}
 }

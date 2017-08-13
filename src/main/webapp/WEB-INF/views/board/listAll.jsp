@@ -25,7 +25,7 @@
 					</select>
 					<input type="text" id="searchKeyword">
 					<button id="searchBtn">검색</button>
-					<button id="newBtn">등록</button>
+					<button class="bs-example-modal-sm" data-toggle="modal" data-target="#bs-example-modal-sm">등록</button>
 				</div>
 				
 				<!-- /.box-body -->
@@ -50,7 +50,7 @@
 						<tr>
 							<th style="width: 60px">번호</th>
 							<th>제목</th>
-							
+							<th>영화</th>
 							<th>글쓴이</th>
 							<th>날짜</th>
 							
@@ -66,7 +66,8 @@
 							<!--/는 루트를 기준으로, ./는 현재를 기준으로 -->
 							<!--<td><a href='/board/read.do?seq=${boardVO.seq}'>${boardVO.title}</a></td> -->
 							
-							<td><a href="javascript:contentModal(${boardreviewVO.rvid},'${boardreviewVO.rvtitle}','${boardreviewVO.rvcontent}', '${boardreviewVO.userid}')">${boardreviewVO.rvtitle}</a></td>
+							<td><a href="javascript:contentModal(${boardreviewVO.rvid},'${boardreviewVO.rvtitle}','${boardreviewVO.moviename}','${boardreviewVO.rvcontent}', '${boardreviewVO.userid}')">${boardreviewVO.rvtitle}</a></td>
+							<td>${boardreviewVO.moviename}</td>
 							<td>${boardreviewVO.userid}</td>
 							<td>${boardreviewVO.rvregdate}</td>
 						<%-- 	<td><span class="badge bg-red">${boardreviewVO.viewcnt }</span></td> --%>
@@ -172,7 +173,8 @@
 			});
 			
 			$("#newBtn").click(function(){
-				location.href="/board/boardForm.bt";
+				/* location.href="/board/boardForm.bt"; */
+				
 			});
 			
 			$("#listBtn").click(function(){
@@ -200,6 +202,7 @@
 							str += "<tr>";
 							str += "<td>"+obj.rvid+"</td>";
 							str += "<td><a href=''>"+obj.rvtitle+"</a></td>";
+							str += "<td>"+obj.moviename+"</td>";
 							str += "<td>"+obj.userid+"</td>";
 							str += "<td>"+obj.rvregdate+"</td>";
 							/* str += "<td><span class='badge bg-red'>"+obj.viewcnt +"</span></td>"; */

@@ -176,7 +176,44 @@
     </div><!-- ./wrapper -->
 
 
-	<!--영화 상세정보 및 평점 입력 Modal -->
+<!--영화 검색 small modal  -->
+<div class="modal fade" id="bs-example-modal-sm" tabindex="-1"
+	role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<button type="button" class="close" data-dismiss="modal">
+			<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+		</button>
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="mySmallModalLabel">리뷰 영화를 우선 골라 주세요</h4>
+			</div>
+			<div class="modal-body">
+				<!-- search form찬호 -->
+				<!-- footer에 javascript:isSessionMovieList()만들어서 연결해야함 -->
+				<form action="/movie/search.bt" method="post" class="sidebar-form">
+					<div class="input-group">
+						<input type="text" name="movieName" class="form-control"
+							placeholder="Search..." /> <span class="input-group-btn">
+							<button type='submit' name='search' id='search-btn'
+								class="btn btn-flat">
+								<i class="fa fa-search"></i>
+							</button>
+						</span>
+					</div>
+				</form>
+				<!-- /.search form -->
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<!--영화 상세정보 및 평점 입력 Modal -->
 	<div class="modal fade" id="contentmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
@@ -246,12 +283,22 @@
 										<option>5.0</option>
 									</select>
 									<button type="submit" >저장</button>
+									
 								</div>
 						</div>
 					</form>
+					
 			</div>
 			
 			<div class="modal-footer">
+			
+				<form action="/board/boardForm.bt">
+					<input type="hidden" id="hiddenMovieName2" name="moviename">
+					<div id="openYear2"></div>
+					<div id="directors2"></div>
+					<button id="registerBoard">리뷰 작성</button>
+				</form>
+				
 				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 			</div>
 			
@@ -262,7 +309,7 @@
 	
 	
 	<script type="text/javascript">
-	var image;
+	
 	var director;
 	
 	var actor;
@@ -283,6 +330,7 @@
 					var patternDirector = new RegExp(directors);
 					var patternNmEn = new RegExp(movieNmEn);
 					
+					
 					image = ary.items[0].image;
 					actor = ary.items[0].actor;
 					openYear = ary.items[0].pubDate;
@@ -290,28 +338,31 @@
 					
 					$.each(ary.items, function(ids, obj){
 						
-					
-						if(patternDirector.test(obj.director)){
-							image = obj.image;
-							actor = obj.actor;
-							openYear = obj.pubDate;
-							director = obj.director;
-							
+						if(obj.image != ""){
+							if(patternDirector.test(obj.director)){
+
+								image = obj.image;
+								actor = obj.actor;
+								openYear = obj.pubDate;
+								director = obj.director;
+							}
+
 						}
-						
 						
 					});
 
-					
-					
 					$("#poster").empty();
-					$("#poster").append("<img alt='영화 포스터' src="+image+" height='300'>");
+					$("#poster").append("<img alt='제공 이미지가 없습니다.' src="+image+" height='300'>");
 					$("#directors").empty();
 					$("#directors").append("<input value='"+director+"' name='moviedirector' readonly='readonly'>");
+					$("#directors2").empty();
+					$("#directors2").append("<input type='hidden' value='"+director+"' name='moviedirector' readonly='readonly'>");
 					$("#actors").empty();
 					$("#actors").append("<input value='"+actor+"' name='movieactor' readonly='readonly'>");
 					$("#openYear").empty();
 					$("#openYear").append("<input type='hidden' name='moviedate' value='"+openYear+"' readonly='readonly'>");
+					$("#openYear2").empty();
+					$("#openYear2").append("<input type='hidden' name='moviedate' value='"+openYear+"' readonly='readonly'>");
 			}
 		})
 	
@@ -322,11 +373,20 @@
 		
 		$('#contentmodal').modal();
 		$('#hiddenMovieName').val(movieNm);
+		$('#hiddenMovieName2').val(movieNm);
 		
 		$('#movieNmEn').val(movieNmEn);
 		$('#openDt').val(openDt);
-		$('#openYear').val(openYear);
+		
 	}
+	
+	
+	$(document).ready(function(){
+		$("#registerBoard2").click(function(){
+			location.href="/board/boardForm.bt?image="+image+"&moviename="+movieNm;
+		});
+		
+	})
 
 	</script>
 

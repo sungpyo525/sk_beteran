@@ -42,6 +42,11 @@
 			<mapping path="/movieRate/movieRate.bt"/>
 			<beans:ref bean="author"/>	
 		</interceptor>
+		
+		<interceptor>
+			<mapping path="/board/boardForm.bt"/>
+			<beans:ref bean="author"/>	
+		</interceptor>
 	</interceptors>
 	
 	

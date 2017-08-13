@@ -11,12 +11,22 @@
 		USERID, RVREGDATE
 		FROM BOARDREVIEW
 	</select>
+	
+	<select id="listWithMovieName" resultType="boardReview">
+		SELECT	B.RVTITLE, B.RVCONTENT, B.RVREGDATE, B.USERID, M.MOVIENAME
+		FROM	BOARDREVIEW B
+		JOIN	MOVIE M
+		ON		B.MOVIEID = M.MOVIEID
+	</select>
+	
 
 
 	<select id="search" parameterType="search" resultType="boardReview">
 
-		SELECT RVID, RVTITLE, RVCONTENT, USERID, RVREGDATE
-		FROM BOARDREVIEW
+		SELECT B.RVID, B.RVTITLE, B.RVCONTENT, B.USERID, B.RVREGDATE, M.MOVIENAME
+		FROM BOARDREVIEW B
+		JOIN	MOVIE M
+		ON		B.MOVIEID = M.MOVIEID
 
 		<!-- 다이나믹 쿼리 사용가능 -->
 
@@ -48,7 +58,8 @@
 		#{rvtitle},
 		#{rvcontent},
 		SYSDATE,
-		#{userid})
+		#{userid},
+		#{movieid})
 	</insert>
 
 	<update id="modify" parameterType="boardReview">

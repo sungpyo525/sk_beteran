@@ -18,6 +18,15 @@
 <form role="form" method="post" action="/board/register.bt">
 	<div class="box-body">
 		<div class="form-group">
+			<label for="exampleInputEmail1">Review Movie</label> 
+			<input type="text"
+				name='moviename' class="form-control" readonly="readonly" value='${moviename}'>
+			<input type="hidden"
+				name='moviedate' class="form-control" readonly="readonly" value='${moviedate}'>
+			<input type="hidden"
+				name='moviedirector' class="form-control" readonly="readonly" value='${moviedirector}'>
+		</div>
+		<div class="form-group">
 			<label for="exampleInputEmail1">Title</label> 
 			<input type="text"
 				name='rvtitle' class="form-control" placeholder="Enter Title">

@@ -18,7 +18,7 @@ public class BoardreviewDao {
 
 	public ArrayList<BoardreviewVO> listRow() {
 		System.out.println("Dao listRow");
-		return (ArrayList) session.selectList("com.spring.beteran.board.list");
+		return (ArrayList) session.selectList("com.spring.beteran.board.listWithMovieName");
 
 	}
 

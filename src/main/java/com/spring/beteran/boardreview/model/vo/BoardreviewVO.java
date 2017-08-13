@@ -2,26 +2,57 @@ package com.spring.beteran.boardreview.model.vo;
 
 public class BoardreviewVO {
 
-	private int rvid;
-	private String rvtitle, rvcontent, userid, rvregdate, movieid;
+	private int rvid,movieid;
+	private String rvtitle, rvcontent, userid, rvregdate, moviename, moviedate;
 	public BoardreviewVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public BoardreviewVO(int rvid, String rvtitle, String rvcontent, String userid, String rvregdate, String movieid) {
+
+
+	public String getMoviedate() {
+		return moviedate;
+	}
+
+
+	public void setMoviedate(String moviedate) {
+		this.moviedate = moviedate;
+	}
+
+
+	public BoardreviewVO(int rvid, int movieid, String rvtitle, String rvcontent, String userid, String rvregdate,
+			String moviename, String moviedate) {
 		super();
 		this.rvid = rvid;
+		this.movieid = movieid;
 		this.rvtitle = rvtitle;
 		this.rvcontent = rvcontent;
 		this.userid = userid;
 		this.rvregdate = rvregdate;
-		this.movieid = movieid;
+		this.moviename = moviename;
+		this.moviedate = moviedate;
 	}
+
+
+	public String getMoviename() {
+		return moviename;
+	}
+
+	public void setMoviename(String moviename) {
+		this.moviename = moviename;
+	}
+
 	public int getRvid() {
 		return rvid;
 	}
 	public void setRvid(int rvid) {
 		this.rvid = rvid;
+	}
+	public int getMovieid() {
+		return movieid;
+	}
+	public void setMovieid(int movieid) {
+		this.movieid = movieid;
 	}
 	public String getRvtitle() {
 		return rvtitle;
@@ -47,12 +78,8 @@ public class BoardreviewVO {
 	public void setRvregdate(String rvregdate) {
 		this.rvregdate = rvregdate;
 	}
-	public String getMovieid() {
-		return movieid;
-	}
-	public void setMovieid(String movieid) {
-		this.movieid = movieid;
-	}
+	
+	
 	
 	
 }

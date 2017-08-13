@@ -166,6 +166,7 @@
 	
 	
 </section>
+</div>
 <!-- /.content -->
 <!--  </div> -->
 <!-- /.content-wrapper -->

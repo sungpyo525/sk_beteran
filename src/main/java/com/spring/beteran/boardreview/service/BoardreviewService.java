@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.spring.beteran.boardreview.model.sql.BoardreviewDao;
 import com.spring.beteran.boardreview.model.vo.BoardreviewVO;
 import com.spring.beteran.boardreview.util.vo.BoardreviewSearchVO;
+import com.spring.beteran.reviewlike.model.vo.ReviewLikeVO;
 
 @Service("boardService")
 public class BoardreviewService {
@@ -51,6 +52,26 @@ public class BoardreviewService {
 	public int delete(BoardreviewVO board) {
 		System.out.println("Service delete");
 		return dao.deleteRow(board);
+	}
+
+	public int insertLike(ReviewLikeVO like) {
+		System.out.println("Service insertLike");
+		return dao.insertLikeRow(like);
+	}
+
+	public ReviewLikeVO selectCountLike(ReviewLikeVO like) {
+		System.out.println("Service selectCountLike");
+		return dao.selectCountLikeRow(like);
+	}
+
+	public ReviewLikeVO showLikeBtn(ReviewLikeVO like) {
+		System.out.println("Service showLikeBtn");
+		return dao.showLikeBtnRow(like);
+	}
+
+	public int deleteLike(ReviewLikeVO like) {
+		System.out.println("Sevice deleteLike");
+		return dao.deleteLikeRow(like);
 	}
 
 }

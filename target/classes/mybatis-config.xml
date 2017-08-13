@@ -11,6 +11,8 @@
 		
 		<typeAlias type="com.spring.beteran.boardreview.model.vo.BoardreviewVO" alias="boardReview"/>
         <typeAlias type="com.spring.beteran.boardreview.util.vo.BoardreviewSearchVO" alias="search"/>
+        
+        <typeAlias type="com.spring.beteran.reviewlike.model.vo.ReviewLikeVO" alias="reviewLike"/>
 	</typeAliases>
 
 </configuration>

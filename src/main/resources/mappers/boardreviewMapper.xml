@@ -13,7 +13,7 @@
 	</select>
 	
 	<select id="listWithMovieName" resultType="boardReview">
-		SELECT	B.RVTITLE, B.RVCONTENT, B.RVREGDATE, B.USERID, M.MOVIENAME
+		SELECT	RVID, B.RVTITLE, B.RVCONTENT, B.RVREGDATE, B.USERID, M.MOVIENAME
 		FROM	BOARDREVIEW B
 		JOIN	MOVIE M
 		ON		B.MOVIEID = M.MOVIEID
@@ -87,7 +87,28 @@
 		RVID = #{rvid}
 	</delete>
 
-
+	<insert id="insertLike" parameterType="reviewLike">
+		INSERT INTO REVIEWLIKE
+		VALUES(#{userid}, #{rvid})
+	</insert>
+	
+	<select id="selectCountLike" parameterType="reviewLike" resultType="reviewLike">
+		SELECT COUNT(RVID) AS COUNTLIKE
+		FROM REVIEWLIKE
+		WHERE RVID=#{rvid}
+		GROUP BY RVID
+	</select>
+	
+	<select id="showLikeBtn" parameterType="reviewLike" resultType="reviewLike">
+		SELECT USERID, RVID
+		FROM REVIEWLIKE
+		WHERE USERID=#{userid} AND RVID=#{rvid}
+	</select>
+	
+	<delete id="deleteLike" parameterType="reviewLike" >
+		DELETE FROM REVIEWLIKE
+		WHERE  USERID=#{userid} AND RVID=#{rvid}
+	</delete>
 
 </mapper>
 

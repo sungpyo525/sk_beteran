@@ -66,7 +66,11 @@
 							<!--/는 루트를 기준으로, ./는 현재를 기준으로 -->
 							<!--<td><a href='/board/read.do?seq=${boardVO.seq}'>${boardVO.title}</a></td> -->
 							
-							<td><a href="javascript:contentModal(${boardreviewVO.rvid},'${boardreviewVO.rvtitle}','${boardreviewVO.moviename}','${boardreviewVO.rvcontent}', '${boardreviewVO.userid}')">${boardreviewVO.rvtitle}</a></td>
+							<td><a href="javascript:contentModal
+								(${boardreviewVO.rvid},'${boardreviewVO.rvtitle}',
+								'${boardreviewVO.rvcontent}','${boardreviewVO.userid}', 
+								${boardreviewVO.movieid},'${boardreviewVO.moviename}')">
+								${boardreviewVO.rvtitle}</a></td>
 							<td>${boardreviewVO.moviename}</td>
 							<td>${boardreviewVO.userid}</td>
 							<td>${boardreviewVO.rvregdate}</td>
@@ -106,16 +110,26 @@
 	      <div class="modal-body">
 	      
 	      		<input type="hidden" name="userid" id="userid">
-	      		
 	      		<div class="form-group">  
-	     			<label for="title">제목</label>
+	     			<label for="title">MOIVENAME</label>
+	      			<input type="text" class="form-control" id="moviename" name="moviename" readonly="readonly">
+	      		</div>
+	      		<div class="form-group">  
+	     			<label for="title">REVIEW TITLE</label>
 	      			<input type="text" class="form-control" id="rvtitle" name="rvtitle">
 	      		</div>
 	      		<div class="form-group">  
-				   	<label for="content">내용</label>
+				   	<label for="content">REVIEW CONTENT</label>
 				    <textarea class="form-control" id="rvcontent" name="rvcontent">
 				    </textarea>
-	      		</div>  
+	      		</div> 
+	      		
+	      		<b style="color:red;">LIKE</b> &nbsp;
+	      		<span id="likeDiv">
+	      		</span>&nbsp;
+	      		<span id='reviewCount'></span>
+	      		<div class="form-group" >
+	      		</div>
 	      		<div class="form-group" id=btnDiv> 
 	      			<button id="updateBtn" type="button" class="btn btn-primary">수정</button>
 	        		<button id="deleteBtn" type="button" class="btn btn-primary">삭제</button>
@@ -136,18 +150,23 @@
 	
 	
 	
-	<script>
+	<script type="text/javascript">
+		
+		var loginuserid="${loginUser.userid}";	// 리뷰 좋아요에 누를 사람의 userid
 		var rvid;
-		function contentModal(rvid, rvtitle, rvcontent, userid){
+		function contentModal(rvid, rvtitle, rvcontent, userid, movieid, moviename){
 			this.rvid=rvid;
+			
+			reviewCount(rvid);
+			showLikeBtn(loginuserid, rvid);
+			
 			//alert(seq+":"+title+":"+content+":"+writer);
 			$("#contentModal").modal();
 			
+			$("#moviename").val(moviename);
 			$("#rvtitle").val(rvtitle);
 			$("#rvcontent").val(rvcontent);		
-			$("#userid").val(userid);
-			
-			
+			$("#userid").val(userid);			
 			
 			
 			if('${loginUser.userid}' != $("#userid").val()){
@@ -159,8 +178,77 @@
 			}
 		}
 		
-	
+		function reviewCount(rvid){
+			$.ajax({
+				url : "selectCountLike.bt",
+				type : "post",
+				data : {rvid:rvid},
+				dataType : "json",
+				success : function(result){
+					$("#reviewCount").empty().append("<b>"+result+"</b>");
+					return false;
+				}		
+			});
+		}
+		
+		function showLikeBtn(userid, rvid){
+			$.ajax({
+				url : "showLikeBtn.bt",
+				type : "post",
+				data : {userid:userid, rvid:rvid},
+				dataType : "json",
+				success : function(result){
+					if(result==1){
+						$("#likeDiv").empty().append("<i class='fa fa-heart-o' aria-hidden='true' style='color:red;' id='notLikeBtn' onclick='notLikeBtn()'></i> ");
+					}else{
+						$("#likeDiv").empty().append("<i class='fa fa-heart' aria-hidden='true' style='color:red;' id='likeBtn'  onclick='likeBtn()'></i> ");
+					}
+					return false;
+				
+				}		
+			});
+		}
+		
+		function notLikeBtn(){
+			$.ajax({
+				url : "insertLike.bt",
+				type : "post",
+				data : {userid:loginuserid, rvid:rvid},
+				dataType : "json",
+				success : function(result){
+//						alert(result);
+					// 개수 보여주는 함수 실행 
+					reviewCount(rvid);
+					
+					// 버튼 나타내주는 함수 실행
+					showLikeBtn(loginuserid, rvid);
+				
+				}		
+			});
+		}
+		
+		function likeBtn(){
+			$.ajax({
+				url : "deleteLike.bt",
+				type : "post",
+				data : {userid:loginuserid, rvid:rvid},
+				dataType : "json",
+				success : function(result){
+//						alert(result);
+					// 개수 보여주는 함수 실행 
+					reviewCount(rvid);
+					
+					// 버튼 나타내주는 함수 실행
+					showLikeBtn(loginuserid, rvid);
+				
+				}		
+			});
+		}
+		
 		$(document).ready(function(){
+			
+			
+			
 			
 			$("#deleteBtn").click(function(){
 				alert(rvid);

@@ -14,6 +14,7 @@ import com.spring.beteran.boardreview.service.BoardreviewService;
 import com.spring.beteran.boardreview.util.vo.BoardreviewSearchVO;
 import com.spring.beteran.movie.model.vo.MovieVO;
 import com.spring.beteran.movie.service.MovieService;
+import com.spring.beteran.reviewlike.model.vo.ReviewLikeVO;
 
 @Controller
 @RequestMapping("/board")
@@ -115,6 +116,51 @@ public class BoardreviewCtrl {
 		System.out.println("Ctrl delete");
 		int resource = service.delete(board);
 		return "redirect:/board/list.bt";
+	}
+	
+	
+	@RequestMapping("/insertLike.bt")
+	@ResponseBody
+	public int insertLike(ReviewLikeVO like) {
+		int result=0;
+		System.out.println("Ctrl insertLike");
+		result=service.insertLike(like);
+		return result;
+	}
+	
+	@RequestMapping("/selectCountLike.bt")
+	@ResponseBody
+	public int selectCountLike(ReviewLikeVO like) {
+		int count;
+		System.out.println("Ctrl selectCountLike");
+		ReviewLikeVO result =service.selectCountLike(like);
+		if(result==null) {
+			count=0;
+		}else {
+			count = result.getCountlike();
+		}
+		return count;
+	}
+	
+	@RequestMapping("/showLikeBtn.bt")
+	@ResponseBody
+	public int showLikeBtn(ReviewLikeVO like) {
+		System.out.println("Ctrl showLikeBtn");
+		int result;
+		ReviewLikeVO vo= service.showLikeBtn(like);
+		if(vo == null) {
+			result=1;
+		}else {
+			result=0;
+		}return result;
+	}
+	
+	@RequestMapping("/deleteLike.bt")
+	@ResponseBody
+	public int deleteLike(ReviewLikeVO like) {
+		System.out.println("Ctrl deleteLike");
+		int result=service.deleteLike(like);
+		return result;
 	}
 
 }

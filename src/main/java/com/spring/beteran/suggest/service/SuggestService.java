@@ -8,19 +8,17 @@ import org.springframework.stereotype.Service;
 
 import com.spring.beteran.movie.model.vo.MovieVO;
 import com.spring.beteran.movierate.model.vo.MovieRateVO;
+import com.spring.beteran.suggest.model.sql.SuggestDao;
 
 @Service("suggestService")
 public class SuggestService {
+	
 	@Resource(name="suggestDao")
 	private SuggestDao dao;
-	public ArrayList<MovieVO> movieIdList() {
-		System.out.println("Service movieIdList");
-		return dao.movieIdListRow();
-	}
 
-	public ArrayList<MovieRateVO> rateListByMovie() {
-		System.out.println("Service rateListByMovie");
-		return dao.rateListByMovieRow();
+	public ArrayList<MovieRateVO> rateList() {
+		System.out.println("Service rateList");
+		return dao.rateListRow();
 	}
 
 

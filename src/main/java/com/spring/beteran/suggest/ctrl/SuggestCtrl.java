@@ -7,6 +7,7 @@ import java.util.Iterator;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.beteran.movie.model.vo.MovieVO;
@@ -21,49 +22,49 @@ public class SuggestCtrl {
 	private SuggestService service;
 	
 	@RequestMapping("/suggestList.bt")
-	public String suggestList() {
+	public String suggestList() throws Exception{
 		System.out.println("Ctrl suggestList");
 		
-		// Outer Hash 선언
-		HashMap<Integer, HashMap<String, Double>> outer=new HashMap<>();
-		ArrayList<MovieRateVO> rateList = service.rateListByMovie();
+		HashMap<Integer, HashMap<String, Double>> outer = new HashMap<>();
 		
+		ArrayList<MovieRateVO> rateList = service.rateList();
+
 		Iterator<MovieRateVO> ite = rateList.iterator();
-		/*while(ite.hasNext()) {
-		 * 여기 고쳐보기
+		while(ite.hasNext()) {
 			MovieRateVO rate = ite.next();
 			HashMap<String, Double> inner = new HashMap<String, Double>();
 			inner.put(rate.getUserid(), rate.getMovierate());
-			if(outer.get(rate.getMovieid()) == null) {
-				outer.put(rate.getMovieid(), inner);
-			}else {
-				HashMap<String, Double> inner2 = outer.get(rate.getMovieid());
-				//inner2.put(rate.getUserid(),)
+			try {
+				if(outer.get(rate.getMovieid()) != null) {
+					HashMap<String, Double> value = outer.get(rate.getMovieid());
+					value.putAll(inner);
+					outer.put(rate.getMovieid(), value);
+				}else {
+					HashMap<String, Double> value =new HashMap<>();
+					value.put(rate.getUserid(), rate.getMovierate());
+					outer.put(rate.getMovieid(), value);
+				}
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
 			}
-			
-			
-		}*/
+				
+		}
 		
-		// MOVIE 테이블, MOVIEID 목록 불러오기
-		//ArrayList<MovieVO> movieIdList = service.movieIdList();
 		
-		//Iterator<MovieVO> ite = movieIdList.iterator();
-		//while(ite.hasNext()) {			
-			
-			//MovieVO movie =ite.next();
-			// MOVIERATE 테이블, movieid로 userid의 movierate(평점) 불러오기
-			
-			//System.out.println(rateList);
-			/*// Inner Hash 선언
-			HashMap<String, Double> inner = new HashMap<String, Double>();
-			Iterator<MovieRateVO> iteR= rateList.iterator();
-			while(iteR.hasNext()) {
-				MovieRateVO rate =iteR.next();
-				inner.put(rate.getUserid(),rate.getMovierate());
-			}*/
-			
-			
-		//}
+		
+		// 확인용 디버그 코드 입니다. 지우셔도 괜찮아요
+		System.out.print("<<DebugCode : 해쉬 맵 테스트 출력>>");
+		for(int key : outer.keySet()) {
+			System.out.println();
+			System.out.print("movieid:"+key+" ");
+			System.out.print("{");
+			for(String innerKey :outer.get(key).keySet()) {
+				System.out.print("["+innerKey+", "+outer.get(key).get(innerKey)+"] ");
+			}
+			System.out.print("}");
+		}
+		// 여기까지
+		
 		
 		return "/suggest/suggestList";
 	}

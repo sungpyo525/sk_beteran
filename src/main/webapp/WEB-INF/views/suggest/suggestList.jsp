@@ -6,5 +6,5 @@
 <%@include file="../include/header.jsp"%>
 
 hello Suggest
-
+</div>
 <%@include file="../include/footer.jsp"%>

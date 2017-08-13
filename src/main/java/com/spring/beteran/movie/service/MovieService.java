@@ -40,4 +40,9 @@ public class MovieService {
 		System.out.println("movieService : getMovieId");
 		return dao.getMovieId(movie);
 	}
+
+	public String getMovieName(MovieVO movie) {
+		System.out.println("movieService : getMovieName");
+		return dao.getMovieName(movie);
+	}
 }

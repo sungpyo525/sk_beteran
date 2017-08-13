@@ -22,6 +22,12 @@
 		WHERE	MOVIENAME = #{moviename} AND MOVIEDATE = #{moviedate}
 	</select>
 	
+	<select id="getName" parameterType="movie" resultType="String">
+		SELECT	MOVIENAME
+		FROM	MOVIE
+		WHERE	MOVIEID = #{movieid}
+	</select>
+	
 
 </mapper>  
 

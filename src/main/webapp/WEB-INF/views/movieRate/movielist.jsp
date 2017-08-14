@@ -22,8 +22,8 @@
 						<option>작성자</option>
 					</select>
 					<input type="text" id="searchKeyword">
-					<button id="searchBtn">Search</button>
-					<button id="newBtn">Register</button>
+					<button id="searchBtn" class="btn btn-default">Search</button>
+					<button id="newBtn" class="btn btn-success">Register</button>
 				</div>
 			</div>
 		</div>
@@ -78,7 +78,7 @@
 					<option>5.0</option>
 				</select>
 
-			<button type="submit" id="rateBtn">점수등록</button></td>
+			<button type="submit" id="rateBtn" class="btn btn-default">점수등록</button></td>
 			</form>
 			</tr>
 		</c:forEach>
@@ -125,8 +125,8 @@
 											<td>${movieRateVO.movieid}</td>
 											<td>${movieRateVO.userid}</td>
 											<td>${movieRateVO.movierate}</td>
-								          	<td><a href="javascript:updateModal(${movieRateVO.movieid},'${movieRateVO.userid}',${movieRateVO.movierate})"><button id="updateRate" type="button">수정</button></a></td>
-								          	<td><a href="/movieRate/rateDelete.bt?userid=${loginUser.userid}&movieid=${movieRateVO.movieid}"><button id="deleteRate" type="button">삭제</button></a></td>
+								          	<td><a href="javascript:updateModal(${movieRateVO.movieid},'${movieRateVO.userid}',${movieRateVO.movierate})"><button id="updateRate" type="button" class="btn btn-warning">수정</button></a></td>
+								          	<td><a href="/movieRate/rateDelete.bt?userid=${loginUser.userid}&movieid=${movieRateVO.movieid}"><button id="deleteRate" type="button" class="btn btn-danger">삭제</button></a></td>
 										</tr>
 								</c:forEach>
 
@@ -145,24 +145,7 @@
 	</div>
 	<!-- /.row -->
 	
-	<div class="row">
-		<div class="col-md-12">
-		 <div class="box">
-			 <div class="box-header with-border">
-				<h3 class="box-title">테스트</h3>
-			 </div>
-			 <div class="box-body">
-			 	
-
-<input name="star1" type="radio" class="star"/>
-<input name="star1" type="radio" class="star"/>
-<input name="star1" type="radio" class="star"/>
-<input name="star1" type="radio" class="star"/>
-<input name="star1" type="radio" class="star"/>
-			 </div>
-	     </div>
-	    </div>
-	</div>
+	
 	
 	
 </section>

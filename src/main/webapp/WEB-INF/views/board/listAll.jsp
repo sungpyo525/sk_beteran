@@ -24,8 +24,8 @@
 						<option>관련영화</option>				
 					</select>
 					<input type="text" id="searchKeyword">
-					<button id="searchBtn">검색</button>
-					<button class="bs-example-modal-sm" data-toggle="modal" data-target="#bs-example-modal-sm">등록</button>
+					<button id="searchBtn" class="btn btn-default">검색</button>
+					<button class="bs-example-modal-sm btn btn-success" data-toggle="modal" data-target="#bs-example-modal-sm">등록</button>
 				</div>
 				
 				<!-- /.box-body -->
@@ -120,7 +120,7 @@
 	      		</div>
 	      		<div class="form-group">  
 				   	<label for="content">REVIEW CONTENT</label>
-				    <textarea class="form-control" id="rvcontent" name="rvcontent">
+				    <textarea class="form-control" id="rvcontent" name="rvcontent" style="height: 277px;">
 				    </textarea>
 	      		</div> 
 	      		
@@ -132,7 +132,7 @@
 	      		</div>
 	      		<div class="form-group" id=btnDiv> 
 	      			<button id="updateBtn" type="button" class="btn btn-primary">수정</button>
-	        		<button id="deleteBtn" type="button" class="btn btn-primary">삭제</button>
+	        		<button id="deleteBtn" type="button" class="btn btn-danger">삭제</button>
 	        		<button id="listBtn" type="button" class="btn btn-warning">목록</button> 
 	      		</div>
 	      </div>
@@ -252,12 +252,10 @@
 		$(document).ready(function(){
 			
 			$("#deleteBtn").click(function(){
-				alert(rvid);
 				location.href="/board/delete.bt?rvid="+rvid;
 			});
 			
 			$("#updateBtn").click(function(){
-				alert(rvid);
 				location.href="/board/modifyForm.bt?rvid="+rvid;
 			});
 			

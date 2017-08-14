@@ -19,22 +19,22 @@
                 <div class="item active">
                    <a href="/movieRate/movieRate.bt?userid=${loginUser.userid}"><img src="/resources/img/carousel01.jpg" alt="First slide"></a>
                      <div class="carousel-caption">
-                        <h3>영화 추천 </h3>
-                        <p>데이터로 분석되는 다양한 추천 영화를 만나보세요!</p>
+                        <h3>영화 추천 서비스 </h3>
+                        <p>영화 평점 입력을 통해 신뢰성 높은 영화 추천서비스를 만나보세요!</p>
                      </div>  
                 </div>
                 <div class="item">
-                   <a href="/board/list.bt"><img src="/resources/img/carousel02.jpg" alt="Second slide"></a> 
+                   <a href="/board/list.bt?userid=${loginUser.userid}"><img src="/resources/img/carousel02.jpg" alt="Second slide"></a> 
                      <div class="carousel-caption">
-                        <h3>영화 리뷰 </h3>
+                        <h3>영화 리뷰 서비스</h3>
                         <p>많은 유저들의 다양한 리뷰를 만나보세요!</p>
                      </div>                                   
                 </div>
                 <div class="item">
-                    <a href="#"><img src="/resources/img/carousel03.jpg" alt="Third slide"></a>                 
+                    <a href="/suggest/recommendMovie.bt?userid=${loginUser.userid}"><img src="/resources/img/carousel03.jpg" alt="Third slide"></a>                 
                      <div class="carousel-caption">
-                        <h3>실시간 제공 </h3>
-                        <p>실시간으로 업데이트되는 인기영화 정보를 만나보세요! </p>
+                        <h3>실시간 제공 서비스</h3>
+                        <p>실시간으로 분석되는 추천 및 인기영화 정보를 만나보세요! </p>
                      </div>                     
                 </div>
              </div>
@@ -48,8 +48,8 @@
           </div>
 	<br>
 	<div class="row">
-		<div class="col-md-12">
-			<div class="box" id="btnArea">
+		<div class="col-md-12" >
+			<div class="box" id="btnArea" style='width: 1259px; height: 200px; background-image: url("/resources/img/leon.jpg");'>
 			
 			</div>
 		</div>
@@ -186,7 +186,7 @@
  	window.onload = function () {
  		var userid= "${loginUser.userid}";
 	    if(userid==""){
-	    	 $("#btnArea").empty().append("<button type='button' onclick='gologinPost()' class='btn btn-warning' value='로그인 하기'>로그인 하기</button>");
+	    	 $("#btnArea").empty().append("<button style='margin-top: 80px; margin-left:100px;' type='button' onclick='gologinPost()' class='btn btn-warning' value='로그인 하기'>로그인 하기</button>");
 	    }else{	
 		    $.ajax({
 		    	 url: "/user/isExstMovieRate.bt",
@@ -194,12 +194,11 @@
 		    	 data : {userid : userid},
 		    	 datatype: "json",
 		    	 success : function(isExist){
-		    		 alert(isExist);
 		    		 if(isExist==1){
-		    			 $("#btnArea").empty().append("<button type='button' onclick='gomovieRate()' class='btn btn-success' value='평가하기'>평가하기</button>");
+		    			 $("#btnArea").empty().append("<button style='margin-top: 80px; margin-left:100px;' type='button' onclick='gomovieRate()' class='btn btn-success' value='영화 점수 평가하기'>평가하기</button>");
 		    			 return false
 		    		 }else{
-		    			 $("#btnArea").empty().append("<button type='button' onclick='gomovieRate()' class='btn btn-primary' value='점수보기'>점수보기</button>");;
+		    			 $("#btnArea").empty().append("<button style='margin-top: 80px; margin-left:100px;' type='button' onclick='gomovieRate()' class='btn btn-primary' value='내가 입력한 점수보기'>내가 입력한 점수보기</button>");;
 		    			 return false;
 		    		 }
 		    		 

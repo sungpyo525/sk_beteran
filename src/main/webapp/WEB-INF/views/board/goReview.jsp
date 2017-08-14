@@ -106,7 +106,6 @@ function showLikeBtn(userid, rvid){
 }
 
 function notLikeBtn(id){
-	alert(loginuserid);
 	$.ajax({
 		url : "insertLike.bt",
 		type : "post",

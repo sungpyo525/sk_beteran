@@ -52,6 +52,12 @@
 			<mapping path="/suggest/suggestList.bt"/>
 			<beans:ref bean="author"/>	
 		</interceptor>
+		
+		
+		<interceptor>
+			<mapping path="/suggest/recommendMovie.bt"/>
+			<beans:ref bean="author"/>	
+		</interceptor>
 	</interceptors>
 	
 	

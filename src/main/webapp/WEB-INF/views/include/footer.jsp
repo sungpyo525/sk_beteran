@@ -253,19 +253,19 @@
 							<div class="col-xs-10 col-lg-10" id="directors">
 								<input  name="moviedirector" readonly="readonly">
 							</div>
-						</div>
+						</div><br/>
 						<div class="form-group">
 							<label for="Name" class="col-xs-2 col-lg-2 control-label">배우</label>
 							<div class="col-xs-10 col-lg-10" id="actors">
 								<input  name="actors" readonly="readonly">
 							</div>
-						</div>
+						</div><br/>
 						
 						<div class="form-group">
 							
 								<input type="hidden" value="${loginUser.userid}" name="userid">
 								<input type="hidden" id="hiddenMovieName" name="moviename">
-								<label for="Name" class="col-xs-2 col-lg-2 control-label">평점 입력</label>
+								<label for="Name" class="col-xs-2 col-lg-2 control-label">평점 입력</label><br/>
 								<div class="col-xs-10 col-lg-10" >
 									
 									<select id="rate" name="movierate">
@@ -282,7 +282,7 @@
 										<option>4.5</option>
 										<option>5.0</option>
 									</select>
-									<button type="submit" >저장</button>
+									<button type="submit"  class="btn btn-warning">저장</button>
 									
 								</div>
 						</div>
@@ -296,8 +296,9 @@
 					<input type="hidden" id="hiddenMovieName2" name="moviename">
 					<div id="openYear2"></div>
 					<div id="directors2"></div>
-					<button id="registerBoard">리뷰 작성</button>
+					<button id="registerBoard" class="btn btn-primary">리뷰 작성</button>
 				</form>
+				<br/>
 					<button id="goReview" class="btn btn-success">모든 리뷰 보러가기</button>
 				
 				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
@@ -402,7 +403,6 @@
 				data : {moviename:name, moviedate:date},
 				dataType : "json",
 				success : function(result){
-					alert(result);
 				/* 	if(result==null){
 						alert("안나옴");
 						if(confirm("아직 리뷰가 등록되지 않았습니다. 리뷰를 등록하시겠습니까?")){

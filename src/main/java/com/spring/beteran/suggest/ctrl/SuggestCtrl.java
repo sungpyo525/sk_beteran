@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import javax.annotation.Resource;
 
+import org.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,9 @@ import com.spring.beteran.suggest.model.vo.PredictedRateVO;
 import com.spring.beteran.suggest.service.SuggestService;
 import com.spring.beteran.user.model.vo.SimUserVO;
 import com.spring.beteran.user.model.vo.UserVO;
+
+
+
 
 @Controller
 @RequestMapping("/suggest")
@@ -119,16 +123,45 @@ public class SuggestCtrl {
 		}
 		model.addAttribute("firstSimUser", firstSimUser);
 		
+		
 		UserVO simUser = new UserVO();
 		simUser.setUserid(firstSimUser.getUserid());
 		//// 내 평점 리스트와 가장 유사한 유저 평점정보 보여주기
 		ArrayList<MovieRateVO> listSim = userService.listRate(simUser);
 		ArrayList<MovieRateVO> listMe = userService.listRate(user);
 		model.addAttribute("listSim", listSim); // 서비스로직의 결과를 model객체에 담아 jsp에서 사용할 수있게
+		
+		
+		JSONArray jary = new JSONArray(listSim);
+		JSONArray jary2 = new JSONArray(listMe);
+		model.addAttribute("listSimJson", jary.toString()); // 서비스로직의 결과를 model객체에 담아 jsp에서 사용할 수있게
 		model.addAttribute("movieRatelists", listMe);
+		model.addAttribute("movieRatelistsJson", jary2.toString());
 		
+/*		
+		//유사도 높은 유저와 공통 영화 리스트 가져오기
+		ArrayList<MovieRateVO> youSimMovieRateVOList = new ArrayList<>();
+		ArrayList<MovieRateVO> meSimMovieRateVOList = new ArrayList<>();
+		ArrayList<Integer> simMovieList = test2.getSimUserList(user.getUserid(), firstSimUser.getUserid(), outerUser);
+		for(int key : simMovieList) {
+			MovieRateVO movieRate = new MovieRateVO();
+			movieRate.setMovieid(key);
+			movieRate.setMovierate(outerUser.get(firstSimUser.getUserid()).get(key));
+			youSimMovieRateVOList.add(movieRate);
+		}
 		
+		for(int key : simMovieList) {
+			MovieRateVO movieRate = new MovieRateVO();
+			movieRate.setMovieid(key);
+			movieRate.setMovierate(outerUser.get(user.getUserid()).get(key));
+			meSimMovieRateVOList.add(movieRate);
+		}
 		
+		JSONArray jaryYou = new JSONArray(youSimMovieRateVOList);
+		JSONArray jaryMe = new JSONArray(meSimMovieRateVOList);
+		
+		model.addAttribute("jaryYou", jaryYou.toString());
+		model.addAttribute("jaryMe", jaryMe.toString());*/
 		
 		System.out.println(userSimList);
 		

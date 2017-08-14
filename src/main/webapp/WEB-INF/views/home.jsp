@@ -54,6 +54,68 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	<div class="row">
+		<!-- left column -->
+		<div class="col-md-12">
+			<!-- general form elements -->
+
+			<div class="box">
+				<div class="box-header with-border">
+					<h3 class="box-title">BOX OFFICE</h3>
+				</div>
+				<table class="table table-bordered">
+						<tr>
+							<th>1위</th>
+							<th>2위</th>
+							<th>3위</th>
+							<th>4위</th>
+							<th>5위</th>
+							<th>6위</th>
+							<th>7위</th>
+							<th>8위</th>
+							<th>9위</th>
+							<th>10위</th>
+							
+						</tr>
+					<tbody id= "tbody2">
+
+						<tr>
+							<c:forEach items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
+								<td><a href='javascript:contentMovieModal("${boxoffice.movieNm}","${boxoffice.movieNmEn}","${boxoffice.openDt }",
+									"${boxoffice.repNationNm}","${boxoffice.directors[0].peopleNm}","${boxoffice.repGenreNm}","${movie.prdtYear}")'>${boxoffice.movieNm }</td>
+							</c:forEach>
+						</tr>
+					</tbody>
+					<tbody id= "tbody2">
+						<tr>
+							<td><img alt='영화 포스터' src="${rank1.items[0].image}" ></td>
+							<td><img alt='영화 포스터' src="${rank2.items[0].image}" ></td>
+							<td><img alt='영화 포스터' src="${rank3.items[0].image}" ></td>
+							<td><img alt='영화 포스터' src="${rank4.items[0].image}" ></td>
+							<td><img alt='영화 포스터' src="${rank5.items[0].image}" ></td>
+							<td><img alt='영화 포스터' src="${rank6.items[0].image}" ></td>
+							<td><img alt='영화 포스터' src="${rank7.items[0].image}" ></td>
+							<td><img alt='영화 포스터' src="${rank8.items[0].image}" ></td>
+							<td><img alt='영화 포스터' src="${rank9.items[0].image}" ></td>
+							<td><img alt='영화 포스터' src="${rank10.items[0].image}" ></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- /.box -->
+		</div>
+		<div>
+			<%-- <input value="${rank1json.movieInfo.movieNm}"/> --%>
+			
+		</div>
+		
+		<!--/.col (left) -->
+	</div>
+	
+	
+	
 	<div class="row">
 
 		<!-- left column -->
@@ -105,63 +167,7 @@
 	</div>
 	<!-- /.row -->
 	
-	<div class="row">
-		<!-- left column -->
-		<div class="col-md-12">
-			<!-- general form elements -->
-
-			<div class="box">
-				<div class="box-header with-border">
-					<h3 class="box-title">BOX OFFICE</h3>
-				</div>
-				<table class="table table-bordered">
-						<tr>
-							<th>1위</th>
-							<th>2위</th>
-							<th>3위</th>
-							<th>4위</th>
-							<th>5위</th>
-							<th>6위</th>
-							<th>7위</th>
-							<th>8위</th>
-							<th>9위</th>
-							<th>10위</th>
-							
-						</tr>
-					<tbody id= "tbody2">
-
-						<tr>
-							<c:forEach items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
-								<td><a href='javascript:contentMovieModal("${boxoffice.movieNm}","${boxoffice.movieNmEn}","${boxoffice.openDt }",
-									"${boxoffice.repNationNm}","${boxoffice.directors}","${boxoffice.repGenreNm}")'>${boxoffice.movieNm }</td>
-							</c:forEach>
-						</tr>
-					</tbody>
-					<tbody id= "tbody2">
-						<tr>
-							<td><img alt='영화 포스터' src="${rank1.items[0].image}" ></td>
-							<td><img alt='영화 포스터' src="${rank2.items[0].image}" ></td>
-							<td><img alt='영화 포스터' src="${rank3.items[0].image}" ></td>
-							<td><img alt='영화 포스터' src="${rank4.items[0].image}" ></td>
-							<td><img alt='영화 포스터' src="${rank5.items[0].image}" ></td>
-							<td><img alt='영화 포스터' src="${rank6.items[0].image}" ></td>
-							<td><img alt='영화 포스터' src="${rank7.items[0].image}" ></td>
-							<td><img alt='영화 포스터' src="${rank8.items[0].image}" ></td>
-							<td><img alt='영화 포스터' src="${rank9.items[0].image}" ></td>
-							<td><img alt='영화 포스터' src="${rank10.items[0].image}" ></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<!-- /.box -->
-		</div>
-		<div>
-			<%-- <input value="${rank1json.movieInfo.movieNm}"/> --%>
-			
-		</div>
-		
-		<!--/.col (left) -->
-	</div>
+	
 	
 </section>
 <!-- /.content -->

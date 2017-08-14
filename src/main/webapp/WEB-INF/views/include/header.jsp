@@ -404,7 +404,7 @@
                 <li><a href="/board/listCri"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
                 --%>
                 <li>
-                	<a href="/board/list.bt">
+                	<a href="/board/list.bt?userid=${loginUser.userid}">
                 		<i class="fa fa-circle-o"></i>재호:게시판
                 	</a>
                 </li>

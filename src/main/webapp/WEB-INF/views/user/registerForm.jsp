@@ -25,7 +25,7 @@
   <body class="login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href="/main.bt"><b>Beteran</b>Project</a>
+        <a href="/main.bt"><b>Veteran</b>Project</a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>

@@ -15,6 +15,9 @@ import com.spring.beteran.boardreview.util.vo.BoardreviewSearchVO;
 import com.spring.beteran.movie.model.vo.MovieVO;
 import com.spring.beteran.movie.service.MovieService;
 import com.spring.beteran.reviewlike.model.vo.ReviewLikeVO;
+import com.spring.beteran.user.model.vo.UserVO;
+
+import net.sf.json.JSONArray;
 
 @Controller
 @RequestMapping("/board")
@@ -27,9 +30,9 @@ public class BoardreviewCtrl {
 	private MovieService movieService;
 
 	@RequestMapping("/list.bt")
-	public String list(Model model) {
+	public String list(UserVO user ,Model model) {
 		System.out.println("Ctrl list");
-		ArrayList<BoardreviewVO> list = service.list();
+		ArrayList<BoardreviewVO> list = service.list(user);
 		model.addAttribute("lists", list);
 		return "board/listAll";
 
@@ -161,6 +164,31 @@ public class BoardreviewCtrl {
 		System.out.println("Ctrl deleteLike");
 		int result=service.deleteLike(like);
 		return result;
+	}
+	
+	@RequestMapping("/findMovieId.bt")
+	@ResponseBody
+	public int findMovieId(MovieVO movie) {
+		System.out.println("Ctrl findMovieId");
+		MovieVO result=service.findMovieId(movie);
+		System.out.println(result.getMovieid());
+		return result.getMovieid();
+		
+	}
+	
+	@RequestMapping("/goReview.bt")
+	public String goReview(BoardreviewVO review, Model model) {
+		System.out.println("Ctrl goReview");
+		ArrayList<BoardreviewVO> list = service.goReview(review);
+		/*Iterator<BoardreviewVO> ite= list.iterator();
+		while(ite.hasNext()) {
+			BoardreviewVO iteTemp=ite.next();
+			System.out.println(iteTemp.getRvcontent());
+			iteTemp.getRvcontent().replaceAll("\\n", "<br>");
+		}*/
+		model.addAttribute("allLists",list);
+		model.addAttribute("moviename",list.get(0).getMoviename());
+		return "/board/goReview";
 	}
 
 }

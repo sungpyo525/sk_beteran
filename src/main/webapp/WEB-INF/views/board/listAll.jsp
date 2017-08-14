@@ -14,7 +14,7 @@
 
 			<div class="box">
 				<div class="box-header with-border">
-					<h3 class="box-title">네티즌 리뷰</h3>
+					<h3 class="box-title">리뷰 검색</h3>
 				</div>
 				
 				<div class="box-body">
@@ -42,7 +42,7 @@
 
 			<div class="box">
 				<div class="box-header with-border">
-					<h3 class="box-title">전체 리스트</h3>
+					<h3 class="box-title">내가 남긴 영화 리뷰</h3>
 				</div>
 				<div class="box-body">
 				

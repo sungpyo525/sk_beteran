@@ -298,6 +298,7 @@
 					<div id="directors2"></div>
 					<button id="registerBoard">리뷰 작성</button>
 				</form>
+					<button id="goReview" class="btn btn-success">모든 리뷰 보러가기</button>
 				
 				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 			</div>
@@ -313,8 +314,15 @@
 	var director;
 	
 	var actor;
+	
+	var name;
+	var date;
+	var director;
 	function contentMovieModal(movieNm,movieNmEn,openDt,repNationNm,directors,repGenreNm,prdtYear){
-
+		name=movieNm;
+		date=prdtYear.substr(0,4);
+		director=directors;
+		
 		$.ajax({
 			url		: "/movie/getPicture.bt",
 			type	: "post",
@@ -384,6 +392,29 @@
 	$(document).ready(function(){
 		$("#registerBoard2").click(function(){
 			location.href="/board/boardForm.bt?image="+image+"&moviename="+movieNm;
+		});
+		
+		$("#goReview").click(function(){
+			alert(director);
+			$.ajax({
+				url : "/board/findMovieId.bt",
+				type : "post",
+				data : {moviename:name, moviedate:date},
+				dataType : "json",
+				success : function(result){
+					alert(result);
+				/* 	if(result==null){
+						alert("안나옴");
+						if(confirm("아직 리뷰가 등록되지 않았습니다. 리뷰를 등록하시겠습니까?")){
+							location.href="/board/boardForm.bt?moviename="+movieNm;
+						}else{
+							return false;
+						}
+					} */
+					location.href="/board/goReview.bt?movieid="+result;
+				}
+			});
+		
 		});
 		
 	})

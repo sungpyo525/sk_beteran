@@ -7,17 +7,20 @@
 
 	<select id="list" resultType="boardReview">
 
-		SELECT RVID, RVTITLE, RVCONTENT,
+		SELECT RVID, SUBSTR(RVTITLE,0,20) AS RVTITLE, RVCONTENT,
 		USERID, RVREGDATE
 		FROM BOARDREVIEW
 	</select>
 	
-	<select id="listWithMovieName" resultType="boardReview">
-		SELECT	RVID, B.RVTITLE, B.RVCONTENT, B.RVREGDATE, B.USERID, M.MOVIENAME
+	<select id="listWithMovieName" resultType="boardReview" parameterType="user">
+		SELECT	RVID, SUBSTR(B.RVTITLE,0,20) AS RVTITLE, B.RVCONTENT, B.RVREGDATE, B.USERID, M.MOVIENAME
 		FROM	BOARDREVIEW B
 		JOIN	MOVIE M
 		ON		B.MOVIEID = M.MOVIEID
+		WHERE USERID=#{userid}
 	</select>
+	
+	
 	
 
 
@@ -109,6 +112,19 @@
 		DELETE FROM REVIEWLIKE
 		WHERE  USERID=#{userid} AND RVID=#{rvid}
 	</delete>
+	
+	<select id="findMovieId" parameterType="movie" resultType="movie">
+		SELECT MOVIEID
+		FROM MOVIE
+		WHERE MOVIENAME=#{moviename} AND MOVIEDATE=#{moviedate}
+	</select>
+	
+	<select id="goReview" parameterType="boardReview" resultType="boardReview">
+		SELECT RVID, RVTITLE, RVCONTENT, USERID, RVREGDATE, MOVIENAME
+		FROM BOARDREVIEW
+		JOIN MOVIE USING (MOVIEID)
+		WHERE MOVIEID=#{movieid}
+	</select>
 
 </mapper>
 

@@ -24,6 +24,24 @@
 	</div>
 	<!-- /.row -->
 	
+	<div class="row">
+		<!-- left column -->
+		<div class="col-md-12">
+			<!-- general form elements -->
+			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title">Chart</h3>
+				</div>
+				<!-- /.box-header -->
+				<div class="box-body">
+					<div id="chart_div" ></div>
+				</div>
+			</div>
+			<!-- /.box -->
+		</div>
+		<!--/.col (left) -->
+	</div>
+	
 	
 <!-- /.row -->
 	<div class="row">
@@ -48,6 +66,7 @@
 
 
 						<tbody id="tbody">
+							<input type="hidden" value='${listSim}' id="listSim">
 							<c:forEach items="${listSim}" var="movieRateVO">
 								<tr id="targetRate">
 
@@ -127,6 +146,43 @@
 <!-- /.content -->
 <!--  </div> -->
 <!-- /.content-wrapper -->
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
+    <script type="text/javascript">
+
+    
+    
+    var arySimUserMovie = new Array();
+    var chartDataSimUser = new Array();
+    chartDataSimUser.push(['MovieName','Rate']);
+    
+    $.each(${listSimJson}, function(idx, data){
+    	chartDataSimUser.push([data.moviename, data.movierate]);
+    });
+    arySimUserMovie = chartDataSimUser;
+    alert(arySimUserMovie);
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(arySimUserMovie);
+
+        var options = {
+          title: '유사도 높은 유저의 평점 차트',
+          hAxis: {title: 'MovieName'},
+          vAxis: {title: 'Rate', minValue: 0, maxValue: 5},
+          legend: 'none'
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
 
 
 

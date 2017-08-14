@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import javax.annotation.Resource;
 
+import org.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,9 @@ import com.spring.beteran.suggest.model.vo.PredictedRateVO;
 import com.spring.beteran.suggest.service.SuggestService;
 import com.spring.beteran.user.model.vo.SimUserVO;
 import com.spring.beteran.user.model.vo.UserVO;
+
+
+
 
 @Controller
 @RequestMapping("/suggest")
@@ -119,12 +123,18 @@ public class SuggestCtrl {
 		}
 		model.addAttribute("firstSimUser", firstSimUser);
 		
+		
 		UserVO simUser = new UserVO();
 		simUser.setUserid(firstSimUser.getUserid());
 		//// 내 평점 리스트와 가장 유사한 유저 평점정보 보여주기
 		ArrayList<MovieRateVO> listSim = userService.listRate(simUser);
 		ArrayList<MovieRateVO> listMe = userService.listRate(user);
 		model.addAttribute("listSim", listSim); // 서비스로직의 결과를 model객체에 담아 jsp에서 사용할 수있게
+		
+		
+		JSONArray jary = new JSONArray(listSim);
+		model.addAttribute("listSimJson", jary.toString()); // 서비스로직의 결과를 model객체에 담아 jsp에서 사용할 수있게
+		
 		model.addAttribute("movieRatelists", listMe);
 		
 		

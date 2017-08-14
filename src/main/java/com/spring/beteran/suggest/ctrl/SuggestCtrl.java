@@ -133,12 +133,35 @@ public class SuggestCtrl {
 		
 		
 		JSONArray jary = new JSONArray(listSim);
+		JSONArray jary2 = new JSONArray(listMe);
 		model.addAttribute("listSimJson", jary.toString()); // 서비스로직의 결과를 model객체에 담아 jsp에서 사용할 수있게
-		
 		model.addAttribute("movieRatelists", listMe);
+		model.addAttribute("movieRatelistsJson", jary2.toString());
 		
+/*		
+		//유사도 높은 유저와 공통 영화 리스트 가져오기
+		ArrayList<MovieRateVO> youSimMovieRateVOList = new ArrayList<>();
+		ArrayList<MovieRateVO> meSimMovieRateVOList = new ArrayList<>();
+		ArrayList<Integer> simMovieList = test2.getSimUserList(user.getUserid(), firstSimUser.getUserid(), outerUser);
+		for(int key : simMovieList) {
+			MovieRateVO movieRate = new MovieRateVO();
+			movieRate.setMovieid(key);
+			movieRate.setMovierate(outerUser.get(firstSimUser.getUserid()).get(key));
+			youSimMovieRateVOList.add(movieRate);
+		}
 		
+		for(int key : simMovieList) {
+			MovieRateVO movieRate = new MovieRateVO();
+			movieRate.setMovieid(key);
+			movieRate.setMovierate(outerUser.get(user.getUserid()).get(key));
+			meSimMovieRateVOList.add(movieRate);
+		}
 		
+		JSONArray jaryYou = new JSONArray(youSimMovieRateVOList);
+		JSONArray jaryMe = new JSONArray(meSimMovieRateVOList);
+		
+		model.addAttribute("jaryYou", jaryYou.toString());
+		model.addAttribute("jaryMe", jaryMe.toString());*/
 		
 		System.out.println(userSimList);
 		

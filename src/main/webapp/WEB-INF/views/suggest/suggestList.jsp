@@ -36,6 +36,25 @@
 				<div class="box-body">
 					<div id="chart_div" ></div>
 				</div>
+				
+			</div>
+			<!-- /.box -->
+		</div>
+		<!--/.col (left) -->
+	</div>
+	<div class="row">
+		<!-- left column -->
+		<div class="col-md-12">
+			<!-- general form elements -->
+			<div class="box box-primary">
+				<div class="box-header">
+					<h3 class="box-title">Chart</h3>
+				</div>
+				<!-- /.box-header -->
+				<div class="box-body">
+					<div id="chart_div2" ></div>
+				</div>
+				
 			</div>
 			<!-- /.box -->
 		</div>
@@ -149,23 +168,31 @@
 
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
-    <script type="text/javascript">
+
+<script type="text/javascript">
 
     
     
     var arySimUserMovie = new Array();
+    var arySimUserMovie2 = new Array();
     var chartDataSimUser = new Array();
+    var chartDataSimUser2 = new Array();
     chartDataSimUser.push(['MovieName','Rate']);
+    chartDataSimUser2.push(['MovieName','Rate']);
     
     $.each(${listSimJson}, function(idx, data){
     	chartDataSimUser.push([data.moviename, data.movierate]);
-    });
+    })
+    $.each(${movieRatelistsJson}, function(idx, data){
+      	chartDataSimUser2.push([data.moviename, data.movierate]);
+    })
+    
     arySimUserMovie = chartDataSimUser;
-    alert(arySimUserMovie);
+    arySimUserMovie2 = chartDataSimUser2;
 
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChart2);
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable(arySimUserMovie);
@@ -181,6 +208,21 @@
 
         chart.draw(data, options);
       }
+      function drawChart2() {
+          var data = google.visualization.arrayToDataTable(arySimUserMovie2);
+
+          var options = {
+            title: '고객님의 평점 차트',
+            hAxis: {title: 'MovieName'},
+            vAxis: {title: 'Rate', minValue: 0, maxValue: 5},
+            legend: 'none'
+          };
+
+          var chart = new google.visualization.ScatterChart(document.getElementById('chart_div2'));
+
+          chart.draw(data, options);
+      }
+
     </script>
 
 
